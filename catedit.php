@@ -1,0 +1,62 @@
+
+<?php include "inc/header.php"; ?>
+<?php 
+       
+   include "model/category.php";
+
+
+   $cat = new category();
+
+   if (!isset($_GET['catid']) || $_GET['catid'] == NULL) {
+        echo "<script>window.location = 'catlist.php'</script>";
+    } else {
+        $catid = $_GET['catid']; 
+    }
+
+    if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])){
+    $catName = $_POST['catName'];
+    $catid = $_GET['catid'];  
+    $catedit = $cat->edit_cat($catid, $catName);
+  
+   }
+?>
+
+<div class="col-sm-9 text-left"> 
+<h3>Cập nhật danh mục</h3>
+<?php
+       if(isset($catedit)){
+        echo $catedit;
+       }
+ ?>
+  <form class="m-5" method="post" action="">
+  <div class="form-group row">
+
+      <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Danh mục:</label>
+      <div class="col-sm-4">
+
+      <?php 
+           $get_cat_by_id = $cat->get_cat_by_id($catid);
+           if($get_cat_by_id){
+            while($result = $get_cat_by_id->fetch_assoc()) { ?>
+
+      <input type="text" class="form-control form-control-sm" id="colFormLabelSm" name="catName" value="<?php echo $result['catName'] ?>" placeholder="Tên danh mục...">
+
+        <?php
+            }
+           } 
+           
+      ?>
+
+      <input type="submit" class="btn btn-primary mt-3 pl-2 pl-3 pr-3" name="submit" value="Lưu">
+    </div>
+  </div> 
+</form>
+
+
+
+</div>
+</div>
+     
+</div>
+   
+<?php include "inc/footer.php"; ?>

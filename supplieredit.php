@@ -1,0 +1,62 @@
+
+<?php include "inc/header.php"; ?>
+<?php 
+       
+   include "model/category.php";
+
+
+   $cat = new category();
+
+   if (!isset($_GET['suid']) || $_GET['suid'] == NULL) {
+        echo "<script>window.location = 'supplierlist.php'</script>";
+    } else {
+        $suid = $_GET['suid']; 
+    }
+
+    if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])){
+    $supplierName = $_POST['supplierName'];
+    $suid = $_GET['suid'];  
+    $suedit = $cat->edit_su($suid, $supplierName);
+  
+   }
+?>
+
+<div class="col-sm-9 text-left"> 
+<h3>Cập nhật nhà cung cấp</h3>
+<?php
+       if(isset($suedit)){
+        echo $suedit;
+       }
+ ?>
+  <form class="m-5" method="post" action="">
+  <div class="form-group row">
+
+      <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Danh mục:</label>
+      <div class="col-sm-4">
+
+      <?php 
+           $get_su_by_id = $cat->get_su_by_id($suid);
+           if($get_su_by_id){
+            while($result = $get_su_by_id->fetch_assoc()) { ?>
+
+      <input type="text" class="form-control form-control-sm" id="colFormLabelSm" name="supplierName" value="<?php echo $result['supplierName'] ?>" placeholder="Tên danh mục...">
+
+        <?php
+            }
+           } 
+           
+      ?>
+
+      <input type="submit" class="btn btn-primary mt-3 pl-2 pl-3 pr-3" name="submit" value="Lưu">
+    </div>
+  </div> 
+</form>
+
+
+
+</div>
+</div>
+     
+</div>
+   
+<?php include "inc/footer.php"; ?>

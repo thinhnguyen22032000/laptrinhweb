@@ -1,0 +1,21 @@
+.form-container{
+	    position: absolute;
+	    top: 15px;
+		border: 1px solid grey;
+		padding: 30px;
+		border-radius: 10px;
+		margin: 0 auto;
+
+
+
+}
+.m-30{
+	  
+}
+
+.content{
+	height: auto !important;
+}
+.sidenav{
+	height: auto !important;
+}
