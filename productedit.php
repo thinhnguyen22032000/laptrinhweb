@@ -32,7 +32,7 @@
 ?>
 
 <div class="col-sm-10 text-left "> 
-<h3>Cập nhật sản phẩm</h3>
+<h3 class="tl_ct m-3">Cập nhật sản phẩm</h3>
 <?php
        if(isset($product_edit)){
         echo $product_edit;

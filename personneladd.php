@@ -18,8 +18,8 @@
 
 ?>
 
-<div class="col-sm-10 text-left "> 
-<h3>Thêm nhân viên</h3>
+<div class="col-sm-10 text-left mgc"> 
+<h3 class="tl_ct m-3">Thêm nhân viên</h3>
 <?php
        if(isset($add_per)){
         echo $add_per;

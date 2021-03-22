@@ -10,8 +10,8 @@
 
 ?>
 
-<div class="col-sm-9 text-left"> 
-<h3>Thêm nhà cung cấp</h3>
+<div class="col-sm-9 text-left mgc"> 
+<h3 class="tl_ct">Thêm nhà cung cấp</h3>
 <?php
        if(isset($suadd)){
         echo $suadd;

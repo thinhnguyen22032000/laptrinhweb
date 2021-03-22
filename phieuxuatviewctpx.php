@@ -19,8 +19,8 @@
 ?>
 
 
-<div class="col-sm-9 text-left">
-  <h3>Chi tiết phiếu xuất</h3>
+<div class="col-sm-9 text-left mgc">
+  <h3 class="tl_ct">Chi tiết phiếu xuất</h3>
  <table class="table table-bordered">
     <thead>
       <tr>

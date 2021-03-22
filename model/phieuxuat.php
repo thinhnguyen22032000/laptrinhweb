@@ -19,8 +19,23 @@
 
   
 
-    public function show_phieuxuat(){
-       $qr = "SELECT * FROM tbl_phieuxuat ORDER BY phieuxuat_id DESC";
+    public function phantrang_phieuxuat(){
+       $sp1trang = 5;
+        if(isset($_GET['page'])){
+          $trang = $_GET['page'];
+        }else{
+          $trang = 1;
+        }
+        $vitri = ($trang - 1)*$sp1trang;
+       
+       
+       $qr = "SELECT * FROM tbl_phieuxuat ORDER BY phieuxuat_id DESC LIMIT $vitri, $sp1trang";
+       $result = $this->db->select($qr);
+       return $result;
+    }
+
+     public function row_px(){
+       $qr = "SELECT * FROM tbl_phieuxuat";
        $result = $this->db->select($qr);
        return $result;
     }
@@ -50,42 +65,64 @@
       $note = $data['note'];
 
       if($phieuxuat_id == '' || $date_export == '' || $productid == '' || $quantity == ''){
-          $alert = "<span class='red'>Vui lòng điền đủ thông tin</span>";
+          $alert = "<p class='err'>Vui lòng điền đủ thông tin</p>";
           return $alert;
 
      }else{
-          $get_qt_curren = "SELECT quantity FROM tbl_product WHERE productid = '$productid'";
+          $get_qt_curren = "SELECT quantity FROM tbl_product WHERE productid = '$productid'"; //get qt kho
           $qt_cur = $this->db->select($get_qt_curren);
           if($qt_cur){
              $result = $qt_cur->fetch_assoc();
              $rows = $result['quantity'];
           }
-          $quantity_product = $rows - $quantity;
+          $quantity_product = $rows - $quantity; // quanitty sau khi xuát hàng trong tbl_product
           if($quantity_product < 0){
-             $alert = "<span class='red'>Số lượng trong kho không đủ(Hiện có: ".$rows."). Vui lòng nhập thêm hàng</span>";
+             $alert = "<p class='err'>Số lượng trong kho không đủ(Hiện có: ".$rows."). Vui lòng nhập thêm hàng</p>";
             return $alert;
           }
           else{
             $qr = "SELECT  * FROM tbl_chitietpx WHERE phieuxuat_id = '$phieuxuat_id' AND productid = '$productid' AND date_export = '$date_export'";
             $result = $this->db->select($qr);
             if($result){
-                $alert = "<span class='green'>Sản phẩm đã tồn tại trong phiếu xuất</span>";
+                $alert = "<p class='err'>Sản phẩm đã tồn tại trong phiếu xuất</p>";
                return $alert;
             }else{
               $up_quantity = "UPDATE tbl_product SET quantity = '$quantity_product' WHERE productid = '$productid'";
               $kq = $this->db->update($up_quantity);
-
+              // add row vào chi tiet px
               $qr = "INSERT INTO tbl_chitietpx(phieuxuat_id,date_export,productid,quantity,note)
                    VALUES ('$phieuxuat_id','$date_export','$productid','$quantity','$note')";
 
               $result = $this->db->insert($qr);
+              
+              // add vào sp bán hàng(tbl_productsell)
+              // get san phảm trong tbl_productsell
+              $get_qt_curren = "SELECT * FROM tbl_productsell WHERE productid = '$productid'";
+              $qt_cur = $this->db->select($get_qt_curren);
+              if($qt_cur){
+                 $row = $qt_cur->fetch_assoc();
+                 $productsell_curren = $row['quantity'];
+
+                $productsell_upqt = $productsell_curren + $quantity;
+
+
+                $qr = "UPDATE tbl_productsell SET quantity = '$productsell_upqt' WHERE productid = '$productid'";
+
+                $result_productsell = $this->db->update($qr);
+              }else{
+                $qr = "INSERT INTO tbl_productsell(productid,quantity)
+                     VALUES ('$productid', '$quantity')";
+
+                $result_productsell = $this->db->insert($qr);
+              }
+              
 
               if($result){
-                    $alert = "<span class='green'>Thêm thành công</span>";
+                    $alert = "<p class='succes'>Thêm thành công</p>";
                return $alert;
               }
               else{
-                $alert = "<span class='red'>Thêm thất bại</span>";
+                $alert = "<p class='err'>Thêm thất bại</p>";
                 return $alert;
             } 
             }
@@ -99,7 +136,7 @@
 
     public function update_qt($quantity, $productid, $phieuxuat_id){
        if( $quantity == ''){
-          $alert = "<span class='red'>Vui lòng điền đủ thông tin</span>";
+          $alert = "<p class='err'>Vui lòng điền đủ thông tin!!<p>";
           return $alert;
 
        }else{
@@ -109,7 +146,7 @@
            $result = $this->db->select($qr)->fetch_assoc();
            $quantity_curren = $result['quantity'];
            //quan ti thay doi
-           $qt_thaydoi = $quantity - $quantity_curren; 
+           $qt_thaydoi = $quantity - $quantity_curren; //qt post - qt ctpx
 
            //get quanti trong kho
           $get_qt_curren = "SELECT quantity FROM tbl_product WHERE productid = '$productid'";
@@ -131,12 +168,30 @@
             $up_quantity = "UPDATE tbl_chitietpx SET quantity = '$quantity_up' WHERE productid = '$productid'";
             $kq = $this->db->update($up_quantity);
 
+
+            // update product sell
+
+            // get san phảm trong tbl_productsell
+              $get_qt_curren = "SELECT * FROM tbl_productsell WHERE productid = '$productid'";
+              $qt_cur = $this->db->select($get_qt_curren);
+        
+               $row = $qt_cur->fetch_assoc();
+               $productsell_curren = $row['quantity'];
+
+               $productsell_upqt = $productsell_curren + $qt_thaydoi;
+
+
+
+              $qr = "UPDATE tbl_productsell SET quantity = '$productsell_upqt' WHERE productid = '$productid'";
+
+                $result_productsell = $this->db->update($qr);
+
              if($result){
-                    $alert = "<span class='green'>Cập nhật thành công</span>";
+                    $alert = "<p class='succes'>Cập nhật thành công!!<p>";
                return $alert;
               }
               else{
-                $alert = "<span class='red'>Cập nhật thất bại</span>";
+                $alert = "<p class='err'>Cập nhật thất bại!!<p>";
                 return $alert;
             } 
               

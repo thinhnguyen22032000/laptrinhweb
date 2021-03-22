@@ -21,9 +21,9 @@
     public function admin_login($adminEmail, $adminPass){
       $adminEmail = $this->fm->validation($adminEmail);
       $adminPass = $this->fm->validation($adminPass);
-      
-      if(empty($adminPass) || empty($adminPass)){
-      $alert = "Vui lòng kiểm tra input!!";
+      //$adminPass = md5($adminPass);
+      if($adminEmail=="" || $adminPass==""){
+      $alert = "<p class='err'>Vui lòng kiểm tra input!!<p>";
       return $alert;
       }
       else{
@@ -40,7 +40,7 @@
               header('location: index.php');
         }
         else{
-          $alert = "Tài khoản hoặc mật khẩu không chính xác";
+          $alert = "<p class='err'>Tài khoản hoặc mật khẩu không chính xác!!<p>";
           return $alert;
         } 
 

@@ -37,7 +37,7 @@
         $qr = "DELETE FROM tbl_category WHERE catid = '$catid'";
         $result= $this->db->delete($qr); 
          if($result){
-          $alert = '<span class="">delete successfull!!</span>'; 
+          $alert = "<p class='succes'>Xóa thành công!!<p>"; 
           return $alert;
         }else{
           $alert = '<span class="">delete false!!</span>'; 
@@ -50,7 +50,7 @@
       $catName = $this->fm->validation($catName);
       
       if($catName == ''){
-        $alert = '<span class="red2">Vui lòng nhập đủ thông tin</span>';
+        $alert = '<span class="red">Vui lòng nhập đủ thông tin</span>';
         return $alert;
       }
       else{
@@ -58,10 +58,10 @@
         $qr = "UPDATE tbl_category SET catName = '$catName' WHERE catid = '$catid'";
         $result= $this->db->update($qr);
         if($result){
-        	$alert = '<span class="">update successfull!!</span>'; 
+        	$alert = "<p class='succes'>Cập nhật thành công!!<p>"; 
         	return $alert;
         }else{
-        	$alert = '<span class="">update false!!</span>'; 
+        	$alert = "<p class='err'>Cập nhật thất bại!!<p>"; 
         	return $alert;
         }
         
@@ -90,7 +90,7 @@
       $supplierName = $this->fm->validation($supplierName);
       
       if($supplierName == ''){
-        $alert = '<span class="red2">Vui lòng nhập đủ thông tin</span>';
+        $alert = "<p class='err'>Vui lòng nhập đủ thông tin!!<p>";
         return $alert;
       }
       else{
@@ -98,7 +98,7 @@
         $qr = "UPDATE tbl_supplier SET supplierName = '$supplierName' WHERE supplierid = '$suid'";
         $result= $this->db->update($qr);
         if($result){
-          $alert = '<span class="">update successfull!!</span>'; 
+          $alert = "<p class='succes'>Cập nhật thành công!!<p>"; 
           return $alert;
         }else{
           $alert = '<span class="">update false!!</span>'; 
@@ -113,7 +113,7 @@
         $qr = "DELETE FROM tbl_supplier WHERE supplierid = '$suid'";
         $result= $this->db->delete($qr); 
          if($result){
-          $alert = '<span class="">delete successfull!!</span>'; 
+          $alert = "<p class='err'>Xóa thành công!!<p>"; 
           return $alert;
         }else{
           $alert = '<span class="">delete false!!</span>'; 
@@ -122,13 +122,17 @@
     }
 
     public function add_su($supplierName){
+        if($supplierName == ''){
+          $alert =  "<p class='err'>Vui lòng nhập đủ thông tin!!<p>"; 
+          return $alert;
+        }
         $qr = "INSERT INTO tbl_supplier(supplierName) VALUES ('$supplierName')";
-        $result= $this->db->delete($qr); 
+        $result= $this->db->insert($qr); 
          if($result){
-          $alert = '<span class="">add successfull!!</span>'; 
+          $alert = "<p class='succes'>Thêm thành công!!<p>"; 
           return $alert;
         }else{
-          $alert = '<span class="">add false!!</span>'; 
+          $alert = "<p class='err'>Thêm thất bại!!<p>"; 
           return $alert;
         }
     }

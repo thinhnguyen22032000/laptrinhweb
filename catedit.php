@@ -21,8 +21,8 @@
    }
 ?>
 
-<div class="col-sm-9 text-left"> 
-<h3>Cập nhật danh mục</h3>
+<div class="col-sm-9 text-left mgc"> 
+<h3 class="tl_ct">Cập nhật danh mục</h3>
 <?php
        if(isset($catedit)){
         echo $catedit;

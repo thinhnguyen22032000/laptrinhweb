@@ -15,11 +15,11 @@
 
 ?>
 
-<div class="col-sm-9 text-left"> 
+<div class="col-sm-9 text-left mgc"> 
 
    <div class="container">
-  <h2>Danh sách nhà cung cấp</h2>
-    <a href="supplieradd.php" type="button" class="btn btn-success mb-3">Thêm mới</a>
+  <h2 class="tl_ct">Danh sách nhà cung cấp</h2>
+    <a href="supplieradd.php" type="button" class="btn btn-success mb-3 lr-btn">Thêm mới</a>
   <?php 
        if(isset($del_su)){
         echo $del_su;

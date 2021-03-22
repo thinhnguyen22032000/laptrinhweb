@@ -27,8 +27,38 @@
         $result= $this->db->select($qr); 
         return $result;
     }
+     public function phantrang_product(){
+        $sp1trang = 5;
+        if(isset($_GET['page'])){
+          $trang = $_GET['page'];
+        }else{
+          $trang = 1;
+        }
+        $vitri = ($trang - 1)*$sp1trang;
+        $qr = "SELECT * FROM tbl_product LIMIT $vitri, $sp1trang";
+        $result= $this->db->select($qr); 
+        return $result;
+    }
+
+     public function search_product($key){
+        $qr = "SELECT * FROM tbl_product WHERE productName LIKE '%$key%'";
+        $result= $this->db->select($qr); 
+        return $result;
+    }
+
+    public function row_product(){
+        $qr = "SELECT productid FROM tbl_product";
+        $result= $this->db->select($qr); 
+        return $result;
+    }
      public function get_name_product(){
         $qr = "SELECT productName, productid FROM tbl_product";
+        $result= $this->db->select($qr); 
+        return $result;
+    }
+     public function get_name_productsell(){
+        $qr = "SELECT tbl_productsell.productid, tbl_product.productName FROM tbl_product 
+        inner join tbl_productsell on tbl_product.productid = tbl_productsell.productid";
         $result= $this->db->select($qr); 
         return $result;
     }
@@ -43,7 +73,7 @@
       $discount = $data['discount'];
 
       if($productName == '' || $catid == '' || $supplierid == '' || $unit == '' || $price == '' || $des_c == '' || $discount =='' ){
-      $alert = "<span class='red'>Vui lòng điền đủ thông tin</span>";
+      $alert = "<p class='err'>Vui lòng điền đủ thông tin!!<p>";
       return $alert;
 
      }else{
@@ -53,11 +83,11 @@
 
       $result = $this->db->insert($qr);
       if($result){
-              $alert = "<span class='green'>Thêm thành công</span>";
+              $alert = "<p class='succes'>Thêm thành công!!<p>";
          return $alert;
       }
       else{
-        $alert = "<span class='red'>Thêm thất bại</span>";
+        $alert = "<p class='err'>Thêm thất bại!!<p>";
         return $alert;
       } 
      }
@@ -80,7 +110,7 @@
       $discount = $data['discount'];
 
       if($productName == '' || $catid == '' || $supplierid == '' || $unit == '' || $price == '' || $des_c == '' || $discount =='' ){
-      $alert = "<span class='red'>Vui lòng điền đủ thông tin</span>";
+      $alert = "<p class='err'>Vui lòng điền đủ thông tin</p>";
       return $alert;
 
      }else{
@@ -98,7 +128,7 @@
 
       $result = $this->db->update($qr);
       if($result){
-              $alert = "<span class='green'>update thành công</span>";
+              $alert = "<p class='succes'>Cập nhật thành công!!<p>";
          return $alert;
       }
       else{
@@ -114,7 +144,7 @@
         $qr = "DELETE FROM tbl_product WHERE productid = '$proid'";
         $result= $this->db->delete($qr); 
          if($result){
-          $alert = '<span class="">delete successfull!!</span>'; 
+          $alert = "<p class='succes'>Xóa thành công!!<p>"; 
           return $alert;
         }else{
           $alert = '<span class="">delete false!!</span>'; 

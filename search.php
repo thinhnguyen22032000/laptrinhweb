@@ -10,7 +10,11 @@
         }
   
 ?>
-
+<?php 
+   if(isset($_POST['key'])){
+    $key = $_POST['key'];
+   }      
+?>
 
 
 
@@ -18,19 +22,9 @@
 <!-- danh sách san pham -->
 <div class="col-sm-9 text-left h-auto mgc"> 
 
-   <!-- tìm kiếm san phẩm -->
-    <div class="input-group col-sm-5 mb-4">
-      <form action="search.php" method="post">
-           <div class="input-group">
-            <input type="search" class="form-control rounded" name="key" placeholder="Search" aria-label="Search"
-              aria-describedby="search-addon" />
-            <button type="submit" class="btn btn-outline-primary" name="search">search</button>
-          </div>
-      </form>
-    </div>
 	
   <div class="container">
-  <h2 class="tl_ct">Danh sách sản phẩm</h2>
+  <h2 class="tl_ct">Tìm kiếm: từ khóa(<?php echo $key?>)</h2>
     <a href="productadd.php" type="button" class="btn btn-success mb-3 lr-btn">Thêm mới</a>
     <span>
     <?php 
@@ -58,12 +52,13 @@
       </tr>
     </thead>
     <tbody>
-     <?php 
 
-         $get_product = $product->phantrang_product();
-          if($get_product){
+     <?php
+          
+         $search_product = $product->search_product($key);
+          if($search_product){
            $i=1;
-            while($result = $get_product->fetch_assoc())
+            while($result = $search_product->fetch_assoc())
            
           {?> 
     
@@ -98,29 +93,7 @@
     </tbody>
   </table>      
  <!--  phan trang php -->
- <div class="phantrang">
-   <?php 
-        $sanpham1trang = 5;
-        $row = $product->row_product();
-        $num_row = mysqli_num_rows($row);
-        $sotrang = ceil($num_row/$sanpham1trang);
-        $i = 1;
-        echo "Trang" ." ";
-
-       
-        for($i=1; $i<=$sotrang;$i++){
-          echo "
-         
-          <a class='phantrang' href='?page=".$i."'>".$i."</a>
-        
-
-
-          ";
-        }
-
-
-   ?>
- </div>
+ 
 </div>
 
 

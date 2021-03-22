@@ -35,11 +35,11 @@
       $passAgain = md5($data['passAgain']);
 
       if($adminName == '' || $adminEmail == '' || $adminPass == '' || $phone == '' || $level == '' || $passAgain =='' ){
-      $alert = "<span class='red'>Vui lòng điền đủ thông tin</span>";
+      $alert = "<span class='err'>Vui lòng điền đủ thông tin</span>";
       return $alert;
 
      }elseif($adminPass != $passAgain){
-       $alert = "<span class='red'>Kiểm tra lại mật khẩu</span>";
+       $alert = "<span class='err'>Kiểm tra lại mật khẩu</span>";
        return $alert;
      }
      else{
@@ -49,11 +49,11 @@
 
             $result = $this->db->insert($qr);
             if($result){
-                    $alert = "<span class='green'>Thêm thành công</span>";
+                    $alert = "<span class='succes'>Thêm thành công</span>";
                return $alert;
             }
             else{
-              $alert = "<span class='red'>Thêm thất bại</span>";
+              $alert = "<span class='err'>Thêm thất bại</span>";
               return $alert;
       } 
      }
@@ -75,7 +75,7 @@
      
 
       if($adminName == '' || $adminEmail == '' || $phone == '' || $level == ''){
-      $alert = "<span class='red'>Vui lòng điền đủ thông tin</span>";
+      $alert = "<span class='err'>Vui lòng điền đủ thông tin</span>";
       return $alert;
       }
       else{
@@ -90,11 +90,11 @@
 
             $result = $this->db->update($qr);
             if($result){
-                    $alert = "<span class='green'>Cập nhật thành công</span>";
+                    $alert = "<span class='succes'>Cập nhật thành công</span>";
                return $alert;
             }
             else{
-              $alert = "<span class='red'>Cập nhật thất bại</span>";
+              $alert = "<span class='err'>Cập nhật thất bại</span>";
               return $alert;
       } 
      }
@@ -105,11 +105,11 @@
      $qr = "DELETE FROM tbl_admin WHERE adminid = '$delid'";
      $result = $this->db->delete($qr);
       if($result){
-          $alert = "<span class='green'>Xóa thành công</span>";
+          $alert = "<span class='succes'>Xóa thành công</span>";
           return $alert;
       }
       else{
-        $alert = "<span class='red'>Xóa thất bại</span>";
+        $alert = "<span class='err'>Xóa thất bại</span>";
         return $alert;
       } 
     }  

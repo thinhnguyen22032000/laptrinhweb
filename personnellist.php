@@ -15,11 +15,11 @@
 
 ?>
 
-<div class="col-sm-9 text-left"> 
+<div class="col-sm-9 text-left mgc"> 
 
    <div class="container">
-  <h2>Danh sách nhân sự</h2>
-    <a href="personneladd.php" type="button" class="btn btn-success mb-3">Thêm mới</a>
+  <h2 class="tl_ct">Danh sách nhân sự</h2>
+    <a href="personneladd.php" type="button" class="btn btn-success mb-3 lr-btn">Thêm mới</a>
   <?php 
        if(isset($del_per)){
         echo $del_per;

@@ -16,10 +16,10 @@
 
 ?>
 
-<div class="col-sm-9 text-left"> 
+<div class="col-sm-9 text-left mgc"> 
 	<!-- Button trigger modal -->
-<h2>Danh sách danh mục</h2>
-<button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+<h2 class="tl_ct">Danh sách danh mục</h2>
+<button type="button" class="btn btn-success lr-btn" data-toggle="modal" data-target="#exampleModal">
   Thêm danh mục
 </button>
 

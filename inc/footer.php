@@ -1,4 +1,12 @@
-<footer  class="container-fluid text-center" >
+<style type="text/css">
+	.footer_ct{
+		height: 150px;
+	}
+</style>
+<footer  class="container-fluid text-center footer_ct" >
+	<div>
+		<p>web developer</p>
+	</div>
 </footer>
 
 </body>

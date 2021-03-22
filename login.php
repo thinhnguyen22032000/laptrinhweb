@@ -9,6 +9,26 @@
 	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	  <link rel="stylesheet" type="text/css" href="css/style.css">
+	  <style type="text/css">
+	  	.lg{
+	  	    margin-top: 60px;
+		    padding: 15px;
+		    border: 1px solid #dee2e6;
+		    box-shadow: antiquewhite;
+		    box-shadow: 1px 1px 8px #888888;
+		    padding-top: 50px;
+		}
+       .tl-lg{
+       	text-align: center;
+        color: #0043ff;
+       }
+
+       .err{
+       	padding: 5px;
+	    background-color: #ffd0d0;
+	    color: red;
+       }
+	  </style>
 </head>
 <body>
 	<?php
@@ -24,7 +44,8 @@
 	 ?>
     <div class="container-fluid">
     	<div class="row justify-content-center">
-    		<div class="col-12 col-sm-6 col-md-3">
+    		<div class="col-12 col-sm-6 col-md-3 lg">
+    			<h3 class="tl-lg">Đăng nhập</h3>
     			<form class="form-container" method="post" action="" >
 				    <?php 
                          if(isset($admin_login)){
@@ -40,10 +61,7 @@
 					    <label for="exampleInputPassword1" class="form-label">Password</label>
 					    <input type="password" class="form-control" id="exampleInputPassword1" name="adminPass">
 					  </div>
-					  <div class="mb-3 form-check">
-					    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-					    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-					  </div>
+					 
 					  <button type="submit" class="btn btn-primary" name="submit">Login</button>
 
 				</form>

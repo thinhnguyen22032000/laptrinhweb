@@ -1,33 +1,15 @@
 <?php include "inc/header.php"; ?>
-<style type="text/css">
-  .position-absolute{
-    right: 30px;
-    top: 50px;
-  }
-  /*.content {
-  border: 2px solid #ccc;
-  padding: 10px;
-  width: 20em;
-}*/
 
-.items {
-  width: -moz-fit-content;
-  width: fit-content;
- 
-  padding: 5px;
-  margin-bottom: 1em;
-}
-</style>
 <?php 
        
-   include "model/phieuxuat.php";
+    include "model/hoadon.php";
     include "model/product.php";
 
-   $px = new phieuxuat();
+   $hd = new hoadon();
    $product = new product();
    // them san pham xuat
-   if(isset($_POST['submit_phieuxuat'])){
-    $add_chitietpx= $px->add_chitietpx($_POST);
+   if(isset($_POST['submit_hoadon'])){
+    $add_chitiethd= $hd->add_chitiethd($_POST);
    }
    // update quantity
    if(isset($_POST['submit_upqt'])){
@@ -37,31 +19,31 @@
     $update_qt= $px->update_qt($quantity, $productid, $phieuxuat_id);
    }
 
-   if(isset($_GET['px'])){
-    $phieuxuat_id = $_GET['px'];
+   if(isset($_GET['hd'])){
+    $hoadon_id = $_GET['hd'];
    }
 
 
 ?>
 
-<div class="col-sm-4 text-left "> 
-<h3 class="tl_ct">Xuất sản phẩm</h3>
+<div class="col-sm-4 text-left mgc "> 
+<h3 class="tl_ct">Chi tiết hóa đơn</h3>
 <?php
-       if(isset($add_chitietpx)){
-        echo $add_chitietpx;
+       if(isset($add_chitiethd)){
+        echo $add_chitiethd;
        }
  ?>
   <form class="m-3" method="post" action="">
     <?php 
-         $get_pxid = $px->get_px_by_id($phieuxuat_id);
-         if($get_pxid){
-          while($row = $get_pxid->fetch_assoc()){ ?>
+         $get_hdid = $hd->get_hd_by_id($hoadon_id);
+         if($get_hdid){
+          while($row = $get_hdid->fetch_assoc()){ ?>
   
   <div class="form-group row ">
-      <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">Mã phiếu xuất:</label>
+      <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">Mã hóa đơn:</label>
       <div class="col-sm-7">
             <input type="text" class="form-control form-control-sm" id="colFormLabelSm"
-             name="phieuxuat_id" value="<?php echo $row['phieuxuat_id'] ?>" readonly > 
+             name="hoadon_id" value="<?php echo $row['hoadon_id'] ?>" readonly > 
       </div>
   </div>
  
@@ -70,7 +52,7 @@
       <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">Ngày lập:</label>
       <div class="col-sm-7">
             <input type="text" class="form-control form-control-sm" id="colFormLabelSm"
-             name="date_export" value="<?php echo $row['date_export'] ?>" readonly> 
+             name="date_order" value="<?php echo $row['date_order'] ?>" readonly> 
       </div>
   </div> 
   <?php
@@ -80,12 +62,19 @@
     ?>
 
   <div class="form-group row">
+      <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">Tên khách hàng:</label>
+      <div class="col-sm-7">
+            <input type="text" class="form-control form-control-sm" id="colFormLabelSm"
+             placeholder="Tên khách hàng" name="customerName" > 
+      </div>
+  </div> 
+  <div class="form-group row">
       <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">Tên sản phẩm:</label>
       <div class="col-sm-7 ">
           <select class="form-control form-control-sm form-select" aria-label="Default select example" name="productid">
             <option selected>---Chọn sản phẩm---</option>
           <?php 
-                $get_product = $product->get_name_product();
+                $get_product = $product->get_name_productsell();
                 if($get_product){
                   while($row_name_pd = $get_product->fetch_assoc()){ ?>
                       <option value="<?php echo $row_name_pd['productid'] ?>"><?php echo $row_name_pd['productName'] ?></option>
@@ -112,7 +101,8 @@
            name="note" > 
       </div>
   </div>  
-   <input type="submit" class="btn btn-primary mt-3 pl-2 pl-3 pr-3" name="submit_phieuxuat" value="Lưu">
+   <input type="submit" class="btn btn-primary mt-3 pl-2 pl-3 pr-3" name="submit_hoadon" value="Lưu">
+  
 
 </form>
 
@@ -121,44 +111,43 @@
 </div>
 
 <div class="col-sm-6 text-left ">
-  <h3 class="tl_ct">Phiếu xuất</h3>
+  <h3>Hóa đơn</h3>
  <table class="table table-bordered">
     <thead>
       <tr>
-        <th>Mã chi tiết</th>
+        <th>Mã hóa đơn</th>
         <th>Tên sản phẩm</th>
         <th>Số lượng</th>
+        <th>Thành tiền</th>
         <th>Chú thích</th>
       </tr>
     </thead>
      <tbody>
     <?php
-          $show_chitietpx = $px->show_chitietpx($phieuxuat_id);
-          if($show_chitietpx){
-           
-            while($row_ctpx = $show_chitietpx->fetch_assoc()){ ?>
+          $show_chitiethd = $hd->show_chitiethd($hoadon_id);
+          if($show_chitiethd){
+            $tongtien = 0;
+            while($row_cthd = $show_chitiethd->fetch_assoc()){ ?>
    
-        <td><?php echo $row_ctpx['ctpx_id'] ?></td>
-        <td><?php echo $row_ctpx['productName'] ?></td>
-        <form action="" method="post">
-        <td><input type="number" name="quantity" value="<?php echo $row_ctpx['quantity'] ?>">
-          <input type="hidden" name="productid" value="<?php echo $row_ctpx['productid'] ?>">
-          <input type="hidden" name="phieuxuat_id" value="<?php echo $row_ctpx['phieuxuat_id'] ?>">
-         
-          <input type="submit" name="submit_upqt" value="update">
-        </td>
-        </form>
-        <td><?php echo $row_ctpx['note'] ?></td>
+        <td><?php echo $row_cthd['hoadon_id'] ?></td>
+        <td><?php echo $row_cthd['productName'] ?></td>
+        <td><?php echo $row_cthd['quantity'] ?></td>
+        <td><?php
+              $price_sp = ($row_cthd['quantity'] * $row_cthd['price']);
+              echo $price = $price_sp - $price_sp*($row_cthd['discount']/100);
+         ?></td>
+        <td><?php echo $row_cthd['note'] ?></td>
        
       </tr>
        <?php
-  
+           $tongtien += $price; 
             }
           }
        
      ?>
     </tbody>
   </table>
+   <p>Tổng cộng: <?php echo isset($tongtien)?$tongtien .'VNĐ':'0 VNĐ' ?></p>
    <a href="phieuxuatlist.php" class="btn btn-primary mt-3 pl-2 pl-3 pr-3" name="submit">Lưu phiếu</a>
    <?php 
         if(isset($update_qt)){

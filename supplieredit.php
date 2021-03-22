@@ -22,7 +22,7 @@
 ?>
 
 <div class="col-sm-9 text-left"> 
-<h3>Cập nhật nhà cung cấp</h3>
+<h3 class="tl_ct m-3">Cập nhật nhà cung cấp</h3>
 <?php
        if(isset($suedit)){
         echo $suedit;

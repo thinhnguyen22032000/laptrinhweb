@@ -20,8 +20,8 @@
 
 ?>
 
-<div class="col-sm-10 text-left "> 
-<h3>Thêm sản phẩm</h3>
+<div class="col-sm-10 text-left"> 
+<h3 class="tl_ct m-3">Thêm sản phẩm</h3>
 <?php
        if(isset($add_product)){
         echo $add_product;

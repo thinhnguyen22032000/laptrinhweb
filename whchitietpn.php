@@ -26,20 +26,27 @@
 
    $pn = new phieunhap();
    $product = new product();
-
+   // add ctsp
    if(isset($_POST['submit'])){
     $add_chitietpn= $pn->add_chitietpn($_POST);
    }
-
+   //get id pn
    if(isset($_GET['pn'])){
     $phieunhap_id = $_GET['pn'];
+   }
+   // update quantity ctpn
+    if(isset($_POST['submit_upqt'])){
+    $quantity = $_POST['quantity'];
+    $productid = $_POST['productid'];
+    $phieunhap_id = $_POST['phieunhap_id'];
+    $update_qt= $pn->update_qt($quantity, $productid, $phieunhap_id);
    }
 
 
 ?>
 
 <div class="col-sm-4 text-left "> 
-<h3>Nhập sản phẩm</h3>
+<h3 class="tl_ct">Nhập sản phẩm</h3>
 <?php
        if(isset($add_chitietpn)){
         echo $add_chitietpn;
@@ -142,7 +149,15 @@
    
         <td><?php echo $row_ctpn['chitietpn_id'] ?></td>
         <td><?php echo $row_ctpn['productName'] ?></td>
-        <td><?php echo $row_ctpn['quantity'] ?></td>
+        <td>
+          <form action="" method="post">
+          <input type="number" name="quantity" value="<?php echo $row_ctpn['quantity'] ?>">
+          <input type="hidden" name="productid" value="<?php echo $row_ctpn['productid'] ?>">
+          <input type="hidden" name="phieunhap_id" value="<?php echo $row_ctpn['phieunhap_id'] ?>">
+         
+          <input type="submit" name="submit_upqt" value="update">
+          </form>
+        </td>
         <td><?php echo $row_ctpn['price'] ?></td>
         <td><?php echo $thanhtien = $row_ctpn['quantity'] * $row_ctpn['price'] ?></td>
         <td><?php echo $row_ctpn['note'] ?></td>
@@ -158,6 +173,11 @@
   </table>
   <p>Tổng cộng: <?php echo isset($tongtien)?$tongtien .'VNĐ':'0 VNĐ' ?></p>
    <a href="whimport.php" class="btn btn-primary mt-3 pl-2 pl-3 pr-3" name="submit">Lưu phiếu</a>
+   <?php 
+         if(isset($update_qt)){
+          echo $update_qt;
+         }
+   ?>
  </div>
  
 

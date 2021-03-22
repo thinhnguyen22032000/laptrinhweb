@@ -1,0 +1,54 @@
+.form-container{
+	    position: absolute;
+	    top: 15px;
+		border: 1px solid grey;
+		padding: 30px;
+		border-radius: 10px;
+		margin: 0 auto;
+
+
+
+}
+.m-30{
+	  
+}
+
+.content{
+	height: auto !important;
+}
+.sidenav{
+	height: auto !important;
+}
+.mgc{
+	margin: 0 auto;
+}
+
+.tl_ct{
+	padding-bottom: 5px;
+	border-bottom: 1px solid;
+	display: inline-block;
+}
+.lr-btn{
+	float: right;
+	margin-bottom: 10px;
+}
+.submenu{
+      display: none;
+ }
+ .cha:hover .submenu{
+      display: block;
+     
+      background-color: blue
+ }
+ .err{
+       	padding: 5px;
+	    background-color: #ffd0d0;
+	    color: red;
+     }
+
+.succes{
+		    padding: 5px;
+    background-color: #95d4a4;
+    color: #28a745;
+}
+    

@@ -16,7 +16,7 @@
        $sl = $db->select($qr_sl);
       
        	$output .= '
-            <table class="table table-bordered mt-5">
+            <table class="table table-bordered">
 			    <thead>
 			      <tr>
 			        <th>STT</th>

@@ -21,10 +21,10 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
 
 ?>
 
-<div class="col-sm-9 text-left"> 
+<div class="col-sm-9 text-left mgc"> 
 
    <div class="container">
-  <h2>Danh sách phiếu nhập</h2>
+  <h2 class="tl_ct">Danh sách phiếu nhập</h2>
   <form method="post" action="">
     <input type="submit" class="btn btn-success mb-3" name="submit_phieuxuat" value="Thêm phiếu nhập">
    
@@ -46,7 +46,7 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
     <tbody>
      <?php 
 
-         $get_pn = $pn->show_phieunhap();
+         $get_pn = $pn->phantrang_phieunhap();
           if($get_pn){
           
             while($result = $get_pn->fetch_assoc())
@@ -70,7 +70,33 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
     }
      ?>
     </tbody>
-  </table>      
+  </table>
+
+  <!-- phan trang -->
+  <div class="phantrang">
+   <?php 
+        $sanpham1trang = 5;
+        $row = $pn->row_pn();
+        $num_row = mysqli_num_rows($row);
+        $sotrang = ceil($num_row/$sanpham1trang);
+        $i = 1;
+        echo "Trang" ." ";
+
+       
+        for($i=1; $i<=$sotrang;$i++){
+          echo "
+         
+          <a class='phantrang' href='?page=".$i."'>".$i."</a>
+        
+
+
+          ";
+        }
+
+
+   ?>
+ </div>    
+
   
 </div>
 

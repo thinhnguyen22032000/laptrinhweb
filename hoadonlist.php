@@ -2,8 +2,8 @@
 
 <?php 
 date_default_timezone_set('Asia/Ho_Chi_Minh');
-    include 'model/phieuxuat.php';
-    $px = new phieuxuat();
+    include 'model/hoadon.php';
+    $hd = new hoadon();
 
       if(!isset($_GET['delid']) || $_GET['delid'] == null){
        
@@ -13,10 +13,10 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
         $del_su = $cat->del_su($delid);
 
       }
-      if(isset($_POST['submit_phieuxuat'])){
+      if(isset($_POST['submit_hoadon'])){
        $date = date("Y-m-d H:i:s");
         $adminid =  session::get('adminid');
-        $add_px = $px->add_phieuxuat($adminid,$date);
+        $add_hd = $hd->add_hoadon($adminid,$date);
       }
 
 ?>
@@ -24,9 +24,9 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
 <div class="col-sm-9 text-left mgc"> 
 
    <div class="container">
-  <h2 class="tl_ct">Danh sách phiếu xuất</h2>
+  <h2 class="tl_ct">Danh sách hóa đơn</h2>
   <form method="post" action="">
-    <input type="submit" class="btn btn-success mb-3" name="submit_phieuxuat" value="Thêm phiếu xuất">
+    <input type="submit" class="btn btn-success mb-3 lr-btn" name="submit_hoadon" value="Thêm hóa đơn">
    
     </form>
   <?php 
@@ -46,20 +46,20 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
     <tbody>
      <?php 
 
-         $get_px = $px->phantrang_phieuxuat();
-          if($get_px){
+         $get_hd = $hd->show_hoadon();
+          if($get_hd){
           
-            while($result = $get_px->fetch_assoc())
+            while($result = $get_hd->fetch_assoc())
            
           {?> 
     
       <tr>
-        <td><?php echo $result['phieuxuat_id'] ?></td>
+        <td><?php echo $result['hoadon_id'] ?></td>
         <td><?php echo $result['adminid'] ?></td>
-        <td><?php echo $result['date_export'] ?></td>
+        <td><?php echo $result['date_order'] ?></td>
         <td>
           
-          <a href="phieuxuatviewctpx.php?ctpx=<?php echo $result['phieuxuat_id'] ?>" type="button" class="btn btn-warning btn-sm">view</a>
+          <a href="hoadonviewct.php?cthd=<?php echo $result['hoadon_id'] ?>" type="button" class="btn btn-warning btn-sm">view</a>
           <!-- <a onclick = "return confirm('Bạn có muốn xóa?')" href="?delid=<?php echo $result['supplierid'] ?>" class="btn btn-danger ml-2 btn-sm">Del</a> -->
 
         </td>
@@ -70,31 +70,7 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
     }
      ?>
     </tbody>
-  </table> 
-  <!-- phan trang --> 
-  <div class="phantrang">
-   <?php 
-        $sanpham1trang = 5;
-        $row = $px->row_px();
-        $num_row = mysqli_num_rows($row);
-        $sotrang = ceil($num_row/$sanpham1trang);
-        $i = 1;
-        echo "Trang" ." ";
-
-       
-        for($i=1; $i<=$sotrang;$i++){
-          echo "
-         
-          <a class='phantrang' href='?page=".$i."'>".$i."</a>
-        
-
-
-          ";
-        }
-
-
-   ?>
- </div>    
+  </table>      
   
 </div>
 

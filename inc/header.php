@@ -17,9 +17,9 @@
   <title>Quản trị</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/layout.css">
  
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -29,10 +29,12 @@
 
   <!-- Latest compiled JavaScript -->
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+  <!--  icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
    
- 
-   <script src="https://cdn.tiny.cloud/1/m2ilur8n7cxswf9n6r1urfksrcukl9ofpp75hsgp0soht3ma/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+  <!-- tinyce -->
+  <script src="https://cdn.tiny.cloud/1/m2ilur8n7cxswf9n6r1urfksrcukl9ofpp75hsgp0soht3ma/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
   <script>
       tinymce.init({
         selector: '#desc'
@@ -75,44 +77,107 @@
       }
       .row.content {height:auto;} 
     }
-    .forc:focus{
-     outline: none !important;
    
-    }
-     .forc:hover{
-     
-     background: blue;
+    .pd{
+      padding-bottom: 0px !important;
     }
     .taga:hover{
       text-decoration: none;
     }
+    .h_ct{
+      height: 60px;
+      line-height: 60px;
+      background-color: #117a8b;
+
+
+    }
+    .bbct{
+      border-bottom: 1px solid white;
+      padding-bottom: 15px;
+      padding-top:5px;
+      font-size: 18px;
+      font-family: sans-serif;
+    }
+    .col-sm-9{
+      margin-top: 20px;
+      margin-bottom: 50px;
+    }
+    .nav-link{
+      color: white;
+    }
+    .forc{
+      color: black !important;
+    }
+    .dx{
+      margin-left: 1000px;
+      color: white;
+     
+    }
+    .dx a {
+      color: white;
+    }
+    .login_ct {
+       text-decoration: none;
+       color: white;
+    }
+    .nav-item h3{
+          line-height: 60px;
+    margin-left: 20px;
+    color: white;
+    }
+  
+   /* .sub-menu li{
+       list-style: none;
+
+    }
+    .fa-menu i{
+
+    }
+    .fa-menu:hover .sub-menu{
+      display: block;
+     
+    }
+    .sub-menu{
+      padding-left: 0px;
+      padding: 15px 20px;
+      border: 1px solid #dee2e6;
+     
+      right: 55px;
+      box-shadow: 1px 1px 8px #888888;
+      border-radius: 5px;
+      display: none;
+      
+    }
+    .sub-menu li a{
+      padding-left: 15px;
+    color: black;
+    }*/
   </style>
 </head>
 
 <body>
  <!--  menu navs -->
- <ul class="nav nav-pills">
+ <ul class="nav nav-pills h_ct">
     <li class="nav-item">
-      <a class="nav-link active" href="#">Active</a>
+      <h3>Lập Trình web</h3>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link disabled" href="#">Disabled</a>
-    </li>
+  
     <?php 
          if(isset($_GET['logout']) && $_GET['logout'] == 'logout'){
           Session::destroy();
          }
     ?>
-    <li class="nav-item">
-      <a class="btn btn-link" href="?logout=logout">Đăng xuất</a>
+    <li class="nav-item dx">
+      
+        Xin chào: <?php echo $_SESSION['adminName'] ?> || <a href="?logout=logout">Đăng xuất</a>
+       
     </li>
-  </ul>
+    
+  
+</ul>
+      
+
+  
 
 
 
@@ -120,31 +185,58 @@
 <!-- menu dropdow  -->
 <div class="container-fluid">    
   <div class="row">
-    <div class="col-md-2 bg-secondary text-white d-none d-md-block sidebar">
+    <div class="col-md-2 text-white d-none d-md-block sidebar" style="background-color: #e9ecef">
       <div class="left-sidebar">
         <div class="nav flex-column sidebar-nav">
-        <h3 class="mt-3"><a href="index.php" class="pl-4 mb-2 text-white taga">Trang chủ</a></h3>
-        <div class="dropdown">
-          <p class="border-0 pl-4 mt-3 mb-2 text-white bg-secondary forc" type="button"  data-toggle="dropdown">Quản lí kho
+        <h3 class="mt-3 mb-4"><a href="index.php" class="pl-4 mb-2 text-white forc taga">Trang chủ</a></h3>
+
+        <!-- quan li kho -->
+        <?php 
+           $level = $_SESSION['level'];
+           if($level == 0 || $level == 1){ ?>
+              <div class="dropdown bbct pd">
+              <p class="border-0 pl-4 text-white forc" type="button" data-toggle="dropdown"><i style='font-size:20px' class='fas pr-2'>&#xf101;</i>Quản lí kho
+              <span class="caret"></span></p>
+              <ul class="dropdown-menu w-100" style="background-color: #e9ecef">
+                <li><a class="dropdown-item" href="catlist.php"><i style='font-size:16px' class='fas pr-2'>&#xf105;</i>Danh mục</a></li>
+                <li><a class="dropdown-item" href="supplierlist.php"><i style='font-size:16px' class='fas pr-2'>&#xf105;</i>Nhà cung cấp</a></li>
+                <li><a class="dropdown-item" href="productlist.php"><i style='font-size:16px' class='fas pr-2'>&#xf105;</i>Sản phẩm</a></li>
+              </ul>
+            </div>
+        <!-- nhap xuat kho -->
+          <div class="dropdown bbct pd">
+          <p class="border-0 pl-4 text-white forc" type="button" data-toggle="dropdown"><i style='font-size:20px' class='fas pr-2'>&#xf101;</i>Quản lí nhập - xuất
           <span class="caret"></span></p>
-          <ul class="dropdown-menu w-100">
-            <li><a class="dropdown-item" href="catlist.php">Danh mục</a></li>
-            <li><a class="dropdown-item" href="supplierlist.php">Nhà cung cấp</a></li>
-            <li><a class="dropdown-item" href="productlist.php">Sản phẩm</a></li>
+          <ul class="dropdown-menu w-100" style="background-color: #e9ecef">
+            <li><a class="dropdown-item" href="whimport.php"><i style='font-size:16px' class='fas pr-2'>&#xf105;</i>Nhập kho</a></li>
+            <li><a class="dropdown-item" href="phieuxuatlist.php"><i style='font-size:16px' class='fas pr-2'>&#xf105;</i>Xuất kho</a></li>
           </ul>
         </div>
-        <a href="personnellist.php" class="pl-4 mb-2 text-white taga">Quản lí nhân sự</a>
-        <div class="dropdown">
-          <p class="border-0 pl-4 bg-secondary text-white forc" type="button" data-toggle="dropdown">Quản lí nhập - xuất
-          <span class="caret"></span></p>
-          <ul class="dropdown-menu w-100">
-            <li><a class="dropdown-item" href="whimport.php">Nhập kho</a></li>
-            <li><a class="dropdown-item" href="phieuxuatlist.php">Xuất kho</a></li>
-           
-          </ul>
+
+        <?php
+           }
+
+        ?>
+       
+        <!-- quan lí nhan su  -->
+        <?php 
+            if($level == 0){ ?>
+
+               <a href="personnellist.php" class="pl-4 text-white taga bbct forc"><i style='font-size:20px' class='fas pr-2'>&#xf101;</i>Quản lí nhân sự</a>
+        <?php
+            }
+
+        ?>
+
+       
+
+
+        <a href="hoadonlist.php" class="pl-4  text-white taga bbct forc"><i style='font-size:20px' class='fas pr-2'>&#xf101;</i>Quản lí bán hàng</a>
+        
         </div>
-        </div>
-      
+  
+
+
 
     </div>
   </div>
