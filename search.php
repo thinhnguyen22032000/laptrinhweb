@@ -20,12 +20,23 @@
 
 
 <!-- danh sách san pham -->
-<div class="col-sm-9 text-left h-auto mgc"> 
+<div class="col-sm-9 text-left f-ct mgc"> 
 
 	
   <div class="container">
-  <h2 class="tl_ct">Tìm kiếm: từ khóa(<?php echo $key?>)</h2>
-    <a href="productadd.php" type="button" class="btn btn-success mb-3 lr-btn">Thêm mới</a>
+  <h2 class="tl_ct">Tìm kiếm: từ khóa(<?php 
+
+     if(isset($key)){
+      echo $key;
+     }else{
+      echo "";
+      $key = "";
+     }
+
+    ?>)</h2>
+     <a href="productadd.php" type="button" class="btn btn-success mb-3 lr-btn">Thêm mới</a>
+    <a href="productlist.php" type="button" class="btn btn-success mb-3 lr-btn mr-5">Danh sách</a>
+   
     <span>
     <?php 
            if(isset($product_del)){
@@ -91,7 +102,13 @@
     }
      ?>
     </tbody>
-  </table>      
+  </table> 
+  <?php 
+      if($search_product == []){ ?>
+        <p class="err">Không tìm thấy sản phẩm</p>
+  <?php
+      }
+  ?>     
  <!--  phan trang php -->
  
 </div>

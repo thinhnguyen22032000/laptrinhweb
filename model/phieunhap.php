@@ -89,11 +89,11 @@
 
                 $result = $this->db->insert($qr);
                 if($result){
-                        $alert = "<span class='succes'>Thêm thành công</span>";
+                        $alert = "<p class='succes'>Thêm thành công</p>";
                    return $alert;
                 }
                 else{
-                  $alert = "<span class='err'>Thêm thất bại</span>";
+                  $alert = "<p class='err'>Thêm thất bại</p>";
                   return $alert;
                 } 
           }
@@ -151,8 +151,8 @@
     }
 
     public function show_chitietpn($phieunhap_id){
-       $qr = "SELECT tbl_chitietpn.*,productName FROM tbl_chitietpn inner join tbl_product on tbl_chitietpn.productid = tbl_product.productid 
-       WHERE phieunhap_id = '$phieunhap_id'";
+       $qr = "SELECT tbl_chitietpn.*,productName,adminid,tbl_phieunhap.date_import FROM tbl_chitietpn inner join tbl_product on tbl_chitietpn.productid = tbl_product.productid inner join tbl_phieunhap on tbl_chitietpn.phieunhap_id = tbl_phieunhap.phieunhap_id 
+       WHERE tbl_chitietpn.phieunhap_id = '$phieunhap_id'";
        $result = $this->db->select($qr);
        return $result;
     }

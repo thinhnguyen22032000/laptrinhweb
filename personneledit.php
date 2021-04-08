@@ -26,14 +26,14 @@
 
 ?>
 
-<div class="col-sm-10 text-left mgc"> 
+<div class="col-sm-9 text-left mgc f-ct"> 
 <h3 class="tl_ct m-3">Cập nhật nhân viên</h3>
 <?php
        if(isset($edit_per)){
         echo $edit_per;
        }
  ?>
-  <form class="m-5" method="post" action="">
+  <form class="m-5 f-ct" method="post" action="">
     <?php
           $get_per_by_id = $per->get_per_by_id($perid);
           if($get_per_by_id){ 

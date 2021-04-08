@@ -203,8 +203,8 @@
     }
 
     public function show_chitietpx($phieuxuat_id){
-       $qr = "SELECT tbl_chitietpx.*,productName FROM tbl_chitietpx inner join tbl_product on tbl_chitietpx.productid = tbl_product.productid 
-       WHERE phieuxuat_id = '$phieuxuat_id'";
+       $qr = "SELECT tbl_chitietpx.*,productName,adminid, tbl_phieuxuat.date_export FROM tbl_chitietpx inner join tbl_product on tbl_chitietpx.productid = tbl_product.productid inner join tbl_phieuxuat on tbl_phieuxuat.phieuxuat_id = tbl_chitietpx.phieuxuat_id
+       WHERE tbl_chitietpx.phieuxuat_id = '$phieuxuat_id'";
        $result = $this->db->select($qr);
        return $result;
     }

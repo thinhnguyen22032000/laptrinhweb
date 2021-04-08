@@ -17,7 +17,7 @@
   <title>Quản trị</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="css/layout.css">
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
  
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -109,7 +109,7 @@
       color: black !important;
     }
     .dx{
-      margin-left: 1000px;
+      margin-left: 70%;
       color: white;
      
     }
@@ -125,6 +125,11 @@
     margin-left: 20px;
     color: white;
     }
+
+    .table thead tr {
+  background-color: #17a2b8;
+    color: white;
+}
   
    /* .sub-menu li{
        list-style: none;
@@ -184,7 +189,7 @@
  
 <!-- menu dropdow  -->
 <div class="container-fluid">    
-  <div class="row">
+  <div class="row row-p">
     <div class="col-md-2 text-white d-none d-md-block sidebar" style="background-color: #e9ecef">
       <div class="left-sidebar">
         <div class="nav flex-column sidebar-nav">
@@ -195,7 +200,7 @@
            $level = $_SESSION['level'];
            if($level == 0 || $level == 1){ ?>
               <div class="dropdown bbct pd">
-              <p class="border-0 pl-4 text-white forc" type="button" data-toggle="dropdown"><i style='font-size:20px' class='fas pr-2'>&#xf101;</i>Quản lí kho
+              <p class="border-0 pl-4 text-white forc" type="button" data-toggle="dropdown"><i style='font-size:16px' class='fas pr-2'>&#xf494;</i>Quản lí kho<i style='font-size:18px; margin-left: 65px' class='fas'>&#xf107;</i>
               <span class="caret"></span></p>
               <ul class="dropdown-menu w-100" style="background-color: #e9ecef">
                 <li><a class="dropdown-item" href="catlist.php"><i style='font-size:16px' class='fas pr-2'>&#xf105;</i>Danh mục</a></li>
@@ -205,7 +210,7 @@
             </div>
         <!-- nhap xuat kho -->
           <div class="dropdown bbct pd">
-          <p class="border-0 pl-4 text-white forc" type="button" data-toggle="dropdown"><i style='font-size:20px' class='fas pr-2'>&#xf101;</i>Quản lí nhập - xuất
+          <p class="border-0 pl-3 text-white forc" type="button" data-toggle="dropdown"><i style='font-size:24px' class='fas mr-2'>&#xf472;</i>Nhập - xuất<i style='font-size:18px; margin-left: 65px' class='fas'>&#xf107;</i>
           <span class="caret"></span></p>
           <ul class="dropdown-menu w-100" style="background-color: #e9ecef">
             <li><a class="dropdown-item" href="whimport.php"><i style='font-size:16px' class='fas pr-2'>&#xf105;</i>Nhập kho</a></li>
@@ -222,16 +227,23 @@
         <?php 
             if($level == 0){ ?>
 
-               <a href="personnellist.php" class="pl-4 text-white taga bbct forc"><i style='font-size:20px' class='fas pr-2'>&#xf101;</i>Quản lí nhân sự</a>
+               <a href="personnellist.php" class="pl-4 text-white taga bbct forc"><i style='font-size:24px' class='fas pr-2'>&#xf3e0;</i>Quản lí nhân sự</a>
+                <a href="thongkeall.php" class="pl-4  text-white taga bbct forc"><i style='font-size:24px' class='fas pr-2'>&#xf200;</i>Thống kê</a>
         <?php
             }
 
         ?>
 
        
-
-
-        <a href="hoadonlist.php" class="pl-4  text-white taga bbct forc"><i style='font-size:20px' class='fas pr-2'>&#xf101;</i>Quản lí bán hàng</a>
+        
+        <?php 
+            if($level == 2 || $level == 0){ ?>
+               <a href="hoadonlist.php" class="pl-4  text-white taga bbct forc"><i style='font-size:24px' class='fas pr-2'>&#xf681;</i>Quản lí bán hàng</a>
+        <?php
+            }
+        ?>
+        
+        
         
         </div>
   

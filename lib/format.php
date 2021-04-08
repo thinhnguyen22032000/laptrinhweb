@@ -33,7 +33,7 @@ class Format{
    }
 
   public function canvert_vnd($priceFloat) {
-     $symbol = ' vnđ';
+     $symbol = ' VNĐ';
      $symbol_thousand = '.';
      $decimal_place = 0;
      $price = number_format($priceFloat, $decimal_place, '', $symbol_thousand);

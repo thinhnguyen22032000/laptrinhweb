@@ -15,11 +15,49 @@
 
 ?>
 
-<div class="col-sm-9 text-left mgc"> 
+<div class="col-sm-9 text-left mgc f-ct"> 
+
+  <?php 
+       
+   $cat = new category();
+   if(isset($_POST['submit'])){
+    $supplierName = $_POST['supplierName'];
+    $suadd = $cat->add_su($supplierName);
+   }
+
+?>
+
+<div class=""> 
+<h3 class="tl_ct">Quản lí nhà cung cấp</h3>
+<?php
+       if(isset($suadd)){
+        echo $suadd;
+       }
+ ?>
+  <form class="m-5 f-ct" method="post" action="">
+  <div class="form-group row " style="margin-left: 20%;">
+
+      <label for="colFormLabelSm" style="font-size: 16px;" class="col-sm-2 col-form-label col-form-label-sm">Nhà cung cấp:</label>
+      <div class="col-sm-6">
+    
+      <input type="text" class="form-control form-control-sm" style="height: 40px;" id="colFormLabelSm" name="supplierName" placeholder="...">
+
+      <input type="submit" class="btn btn-primary mt-3 pl-2 pl-3 pr-3" name="submit" value="Lưu">
+    </div>
+  </div> 
+</form>
+
+
+
+</div>
+
+
+
+
 
    <div class="container">
-  <h2 class="tl_ct">Danh sách nhà cung cấp</h2>
-    <a href="supplieradd.php" type="button" class="btn btn-success mb-3 lr-btn">Thêm mới</a>
+<!--   <h2 class="tl_ct">Danh sách nhà cung cấp</h2> -->
+ 
   <?php 
        if(isset($del_su)){
         echo $del_su;

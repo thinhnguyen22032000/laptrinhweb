@@ -21,25 +21,25 @@
    }
 ?>
 
-<div class="col-sm-9 text-left mgc"> 
+<div class="col-sm-9 text-left mgc f-ct" style="margin-bottom: 200px;"> 
 <h3 class="tl_ct">Cập nhật danh mục</h3>
 <?php
        if(isset($catedit)){
         echo $catedit;
        }
  ?>
-  <form class="m-5" method="post" action="">
+  <form class="m-5 f-ct" method="post" action="">
   <div class="form-group row">
 
-      <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Danh mục:</label>
-      <div class="col-sm-4">
+      <label for="colFormLabelSm" style="font-size: 17px;" class="col-sm-2 col-form-label col-form-label-sm">Danh mục:</label>
+      <div class="col-sm-6">
 
       <?php 
            $get_cat_by_id = $cat->get_cat_by_id($catid);
            if($get_cat_by_id){
             while($result = $get_cat_by_id->fetch_assoc()) { ?>
 
-      <input type="text" class="form-control form-control-sm" id="colFormLabelSm" name="catName" value="<?php echo $result['catName'] ?>" placeholder="Tên danh mục...">
+      <input type="text" class="form-control form-control-sm" style="height: 40px;font-size: 18px;" id="colFormLabelSm" name="catName" value="<?php echo $result['catName'] ?>" placeholder="Tên danh mục...">
 
         <?php
             }

@@ -21,7 +21,7 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
 
 ?>
 
-<div class="col-sm-9 text-left mgc"> 
+<div class="col-sm-9 text-left mgc f-ct"> 
 
    <div class="container">
   <h2 class="tl_ct">Danh sách phiếu xuất</h2>

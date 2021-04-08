@@ -15,7 +15,7 @@
 
 ?>
 
-<div class="col-sm-9 text-left mgc"> 
+<div class="col-sm-9 text-left mgc f-ct"> 
 
    <div class="container">
   <h2 class="tl_ct">Danh sách nhân sự</h2>

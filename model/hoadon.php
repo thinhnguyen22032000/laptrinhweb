@@ -19,8 +19,36 @@
 
   
 
-    public function show_hoadon(){
-       $qr = "SELECT * FROM tbl_hoadon ORDER BY hoadon_id DESC";
+    public function phantrang_hoadon(){
+       $sp1trang = 5;
+        if(isset($_GET['page'])){
+          $trang = $_GET['page'];
+        }else{
+          $trang = 1;
+        }
+        $vitri = ($trang - 1)*$sp1trang;
+
+            $qr =  "SELECT
+          tbl_cthd.*,
+          price,
+          discount,
+          adminid,
+          sum(price * tbl_cthd.quantity * (1-(discount/100))) AS total
+      FROM
+          tbl_cthd
+      INNER JOIN tbl_product ON tbl_cthd.productid = tbl_product.productid
+      INNER JOIN tbl_hoadon ON tbl_cthd.hoadon_id = tbl_hoadon.hoadon_id GROUP by tbl_hoadon.hoadon_id ORDER BY hoadon_id DESC LIMIT $vitri, $sp1trang";
+       
+       // $qr = "SELECT * FROM tbl_hoadon  ORDER BY hoadon_id DESC LIMIT $vitri, $sp1trang";
+
+
+
+       $result = $this->db->select($qr);
+       return $result;
+    }
+
+     public function row_hd(){
+       $qr = "SELECT * FROM tbl_hoadon";
        $result = $this->db->select($qr);
        return $result;
     }
@@ -45,13 +73,12 @@
     public function add_chitiethd($data){
       $hoadon_id = $data['hoadon_id'];
       $date_order = $data['date_order'];
-      $customerName = $data['customerName'];
       $productid = $data['productid'];
       $quantity = $data['quantity'];
       $note = $data['note'];
 
       if($hoadon_id == '' || $date_order == '' || $productid == '' || $quantity == ''){
-          $alert = "<span class='err'>Vui lòng điền đủ thông tin</span>";
+          $alert = "<p class='err'>Vui lòng điền đủ thông tin</p>";
           return $alert;
 
      }else{
@@ -63,26 +90,26 @@
           }
           $quantity_product = $rows - $quantity; // quanitty sau khi xuát hàng trong tbl_product
           if($quantity_product < 0){
-             $alert = "<span class='err'>Số lượng trong kho không đủ(Hiện có: ".$rows."). Vui lòng nhập thêm hàng</span>";
+             $alert = "<p class='err'>Số lượng trong kho không đủ(Hiện có: ".$rows."). Vui lòng nhập thêm hàng</p>";
             return $alert;
           }
           else{
             $qr = "SELECT  * FROM tbl_cthd WHERE hoadon_id = '$hoadon_id' AND productid = '$productid' AND date_order = '$date_order'";
             $result = $this->db->select($qr);
             if($result){
-                $alert = "<span class='err'>Sản phẩm đã tồn tại trong phiếu xuất</span>";
+                $alert = "<p class='err'>Sản phẩm đã tồn tại trong hóa đơn</p>";
                return $alert;
             }else{
               $up_quantity = "UPDATE tbl_productsell SET quantity = '$quantity_product' WHERE productid = '$productid'";
               $kq = $this->db->update($up_quantity);
               // add row vào chi tiet hd
-              $qr = "INSERT INTO tbl_cthd(hoadon_id,date_order,customerName,productid,quantity,note) VALUES ('$hoadon_id','$date_order','$customerName','$productid','$quantity','$note')";
+              $qr = "INSERT INTO tbl_cthd(hoadon_id,date_order,productid,quantity,note) VALUES ('$hoadon_id','$date_order','$productid','$quantity','$note')";
 
               $result = $this->db->insert($qr);
               
 
               if($result){
-                    $alert = "<span class='succes'>Thêm thành công</span>";
+                    $alert = "<p class='succes'>Thêm thành công</p>";
                return $alert;
               }
               else{
@@ -167,8 +194,9 @@
     }
 
     public function show_chitiethd($hoadon_id){
-       $qr = "SELECT tbl_cthd.*,productName,price,discount  FROM tbl_cthd inner join tbl_product on tbl_cthd.productid = tbl_product.productid 
-       WHERE hoadon_id = '$hoadon_id'";
+       $qr = "SELECT tbl_cthd.*,productName,price,discount,unit,adminid,tbl_hoadon.date_order from tbl_cthd inner join tbl_product on tbl_cthd.productid = tbl_product.productid
+         inner join tbl_hoadon on tbl_cthd.hoadon_id = tbl_hoadon.hoadon_id
+       WHERE tbl_cthd.hoadon_id = '$hoadon_id'";
        $result = $this->db->select($qr);
        return $result;
     }

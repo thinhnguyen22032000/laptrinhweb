@@ -35,11 +35,11 @@
       $passAgain = md5($data['passAgain']);
 
       if($adminName == '' || $adminEmail == '' || $adminPass == '' || $phone == '' || $level == '' || $passAgain =='' ){
-      $alert = "<span class='err'>Vui lòng điền đủ thông tin</span>";
+      $alert = "<p class='err'>Vui lòng điền đủ thông tin</p>";
       return $alert;
 
      }elseif($adminPass != $passAgain){
-       $alert = "<span class='err'>Kiểm tra lại mật khẩu</span>";
+       $alert = "<p class='err'>Kiểm tra lại mật khẩu</p>";
        return $alert;
      }
      else{
@@ -49,11 +49,11 @@
 
             $result = $this->db->insert($qr);
             if($result){
-                    $alert = "<span class='succes'>Thêm thành công</span>";
+                    $alert = "<p class='succes'>Thêm thành công</p>";
                return $alert;
             }
             else{
-              $alert = "<span class='err'>Thêm thất bại</span>";
+              $alert = "<p class='err'>Thêm thất bại</p>";
               return $alert;
       } 
      }
@@ -75,7 +75,7 @@
      
 
       if($adminName == '' || $adminEmail == '' || $phone == '' || $level == ''){
-      $alert = "<span class='err'>Vui lòng điền đủ thông tin</span>";
+      $alert = "<p class='err'>Vui lòng điền đủ thông tin</p>";
       return $alert;
       }
       else{
@@ -90,7 +90,7 @@
 
             $result = $this->db->update($qr);
             if($result){
-                    $alert = "<span class='succes'>Cập nhật thành công</span>";
+                    $alert = "<p class='succes'>Cập nhật thành công</p>";
                return $alert;
             }
             else{
@@ -105,11 +105,11 @@
      $qr = "DELETE FROM tbl_admin WHERE adminid = '$delid'";
      $result = $this->db->delete($qr);
       if($result){
-          $alert = "<span class='succes'>Xóa thành công</span>";
+          $alert = "<p class='succes'>Xóa thành công</p>";
           return $alert;
       }
       else{
-        $alert = "<span class='err'>Xóa thất bại</span>";
+        $alert = "<p class='err'>Xóa thất bại</p>";
         return $alert;
       } 
     }  

@@ -31,14 +31,14 @@
 
 ?>
 
-<div class="col-sm-10 text-left "> 
+<div class="col-sm-9 text-left mgc"> 
 <h3 class="tl_ct m-3">Cập nhật sản phẩm</h3>
 <?php
        if(isset($product_edit)){
         echo $product_edit;
        }
  ?>
-  <form class="m-5" method="post" action="">
+  <form class="m-5 f-ct" method="post" action="">
   <?php 
          $get_product_by_id = $product->get_product_by_id($proid);
          if($get_product_by_id){

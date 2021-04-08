@@ -44,7 +44,7 @@
 
 ?>
 
-<div class="col-sm-4 text-left "> 
+<div class="col-sm-4 text-left mt-3 mgc"> 
 <h3 class="tl_ct">Xuất sản phẩm</h3>
 <?php
        if(isset($add_chitietpx)){
@@ -120,7 +120,7 @@
 
 </div>
 
-<div class="col-sm-6 text-left ">
+<div class="col-sm-6 text-left mt-3 mgc">
   <h3 class="tl_ct">Phiếu xuất</h3>
  <table class="table table-bordered">
     <thead>

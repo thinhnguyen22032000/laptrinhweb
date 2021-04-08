@@ -16,7 +16,7 @@
 
 ?>
 
-<div class="col-sm-9 text-left mgc"> 
+<div class="col-sm-9 text-left mgc f-ct"> 
 	<!-- Button trigger modal -->
 <h2 class="tl_ct">Danh sách danh mục</h2>
 <button type="button" class="btn btn-success lr-btn" data-toggle="modal" data-target="#exampleModal">

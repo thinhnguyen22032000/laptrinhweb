@@ -45,8 +45,8 @@
 
 ?>
 
-<div class="col-sm-4 text-left "> 
-<h3 class="tl_ct">Nhập sản phẩm</h3>
+<div class="col-sm-4 text-left  mgc"> 
+<h3 class="tl_ct mt-4">Nhập sản phẩm</h3>
 <?php
        if(isset($add_chitietpn)){
         echo $add_chitietpn;
@@ -128,7 +128,8 @@
 
 </div>
 
-<div class="col-sm-6 text-left ">
+<div class="col-sm-6 text-left mgc">
+   <h3 class="tl_ct mt-4">Phiếu nhập</h3>
  <table class="table table-bordered">
     <thead>
       <tr>
@@ -151,11 +152,11 @@
         <td><?php echo $row_ctpn['productName'] ?></td>
         <td>
           <form action="" method="post">
-          <input type="number" name="quantity" value="<?php echo $row_ctpn['quantity'] ?>">
+          <input type="number" min="1" style="width: 100px;" name="quantity" value="<?php echo $row_ctpn['quantity'] ?>">
           <input type="hidden" name="productid" value="<?php echo $row_ctpn['productid'] ?>">
           <input type="hidden" name="phieunhap_id" value="<?php echo $row_ctpn['phieunhap_id'] ?>">
          
-          <input type="submit" name="submit_upqt" value="update">
+          <input type="submit" class="btn btn-danger upqt" name="submit_upqt" value="update">
           </form>
         </td>
         <td><?php echo $row_ctpn['price'] ?></td>
@@ -172,7 +173,7 @@
     </tbody>
   </table>
   <p>Tổng cộng: <?php echo isset($tongtien)?$tongtien .'VNĐ':'0 VNĐ' ?></p>
-   <a href="whimport.php" class="btn btn-primary mt-3 pl-2 pl-3 pr-3" name="submit">Lưu phiếu</a>
+   <a href="whimport.php" class="btn btn-primary mt-3 pl-2 pl-3 pr-3 mb-5" name="submit">Lưu phiếu</a>
    <?php 
          if(isset($update_qt)){
           echo $update_qt;

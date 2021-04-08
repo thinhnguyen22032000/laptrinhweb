@@ -16,7 +16,7 @@
 
 
 <!-- danh sách san pham -->
-<div class="col-sm-9 text-left h-auto mgc"> 
+<div class="col-sm-9 text-left mgc f-ct"> 
 
    <!-- tìm kiếm san phẩm -->
     <div class="input-group col-sm-5 mb-4">

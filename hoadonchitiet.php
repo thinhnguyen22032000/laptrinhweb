@@ -26,8 +26,8 @@
 
 ?>
 
-<div class="col-sm-4 text-left mgc "> 
-<h3 class="tl_ct">Chi tiết hóa đơn</h3>
+<div class="col-sm-4 text-left mgc"> 
+<h3 class="tl_ct m-4">Chi tiết hóa đơn</h3>
 <?php
        if(isset($add_chitiethd)){
         echo $add_chitiethd;
@@ -61,13 +61,13 @@
       
     ?>
 
-  <div class="form-group row">
+  <!-- <div class="form-group row">
       <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">Tên khách hàng:</label>
       <div class="col-sm-7">
             <input type="text" class="form-control form-control-sm" id="colFormLabelSm"
              placeholder="Tên khách hàng" name="customerName" > 
       </div>
-  </div> 
+  </div>  -->
   <div class="form-group row">
       <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">Tên sản phẩm:</label>
       <div class="col-sm-7 ">
@@ -110,8 +110,8 @@
 
 </div>
 
-<div class="col-sm-6 text-left ">
-  <h3>Hóa đơn</h3>
+<div class="col-sm-6 text-left mgc">
+  <h3 class="m-4">Hóa đơn</h3>
  <table class="table table-bordered">
     <thead>
       <tr>
@@ -129,7 +129,7 @@
             $tongtien = 0;
             while($row_cthd = $show_chitiethd->fetch_assoc()){ ?>
    
-        <td><?php echo $row_cthd['hoadon_id'] ?></td>
+        <td><?php echo $row_cthd['chitiethd_id'] ?></td>
         <td><?php echo $row_cthd['productName'] ?></td>
         <td><?php echo $row_cthd['quantity'] ?></td>
         <td><?php
@@ -148,7 +148,7 @@
     </tbody>
   </table>
    <p>Tổng cộng: <?php echo isset($tongtien)?$tongtien .'VNĐ':'0 VNĐ' ?></p>
-   <a href="phieuxuatlist.php" class="btn btn-primary mt-3 pl-2 pl-3 pr-3" name="submit">Lưu phiếu</a>
+   <a href="hoadonlist.php" class="btn btn-primary mt-3 pl-2 pl-3 pr-3" name="submit">Lưu phiếu</a>
    <?php 
         if(isset($update_qt)){
           echo $update_qt;

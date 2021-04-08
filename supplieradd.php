@@ -17,7 +17,7 @@
         echo $suadd;
        }
  ?>
-  <form class="m-5" method="post" action="">
+  <form class="m-5 f-ct" method="post" action="">
   <div class="form-group row">
 
       <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Nhà cung cấp:</label>

@@ -20,14 +20,14 @@
 
 ?>
 
-<div class="col-sm-10 text-left"> 
+<div class="col-sm-9 text-left mgc"> 
 <h3 class="tl_ct m-3">Thêm sản phẩm</h3>
 <?php
        if(isset($add_product)){
         echo $add_product;
        }
  ?>
-  <form class="m-5" method="post" action="">
+  <form class="m-5 f-ct" method="post" action="">
   <div class="form-group row">
       <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Tên sản phẩm:</label>
       <div class="col-sm-4">

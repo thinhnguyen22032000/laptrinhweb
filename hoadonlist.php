@@ -1,4 +1,7 @@
 <?php include "inc/header.php"; ?>
+<?php include "lib/format.php";
+   $fm = new Format();
+ ?>
 
 <?php 
 date_default_timezone_set('Asia/Ho_Chi_Minh');
@@ -16,12 +19,13 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
       if(isset($_POST['submit_hoadon'])){
        $date = date("Y-m-d H:i:s");
         $adminid =  session::get('adminid');
+        
         $add_hd = $hd->add_hoadon($adminid,$date);
       }
 
 ?>
 
-<div class="col-sm-9 text-left mgc"> 
+<div class="col-sm-9 text-left mgc f-ct"> 
 
    <div class="container">
   <h2 class="tl_ct">Danh sách hóa đơn</h2>
@@ -41,12 +45,13 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
         <th>Mã xuất </th>
         <th>Mã nhân viên</th>
         <th>Ngày lập</th>
+        <th>Tổng tiền</th>
       </tr>
     </thead>
     <tbody>
      <?php 
 
-         $get_hd = $hd->show_hoadon();
+         $get_hd = $hd->phantrang_hoadon();
           if($get_hd){
           
             while($result = $get_hd->fetch_assoc())
@@ -57,6 +62,7 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
         <td><?php echo $result['hoadon_id'] ?></td>
         <td><?php echo $result['adminid'] ?></td>
         <td><?php echo $result['date_order'] ?></td>
+        <td><?php echo $fm->canvert_vnd($result['total']) ?></td>
         <td>
           
           <a href="hoadonviewct.php?cthd=<?php echo $result['hoadon_id'] ?>" type="button" class="btn btn-warning btn-sm">view</a>
@@ -71,7 +77,31 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
      ?>
     </tbody>
   </table>      
-  
+ <!--  phan trang -->
+
+  <div class="phantrang">
+   <?php 
+        $sanpham1trang = 5;
+        $row = $hd->row_hd();
+        $num_row = mysqli_num_rows($row);
+        $sotrang = ceil($num_row/$sanpham1trang);
+        $i = 1;
+        echo "Trang" ." ";
+
+       
+        for($i=1; $i<=$sotrang;$i++){
+          echo "
+         
+          <a class='phantrang' href='?page=".$i."'>".$i."</a>
+        
+
+
+          ";
+        }
+
+
+   ?>
+ </div>    
 </div>
 
 

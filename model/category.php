@@ -50,7 +50,7 @@
       $catName = $this->fm->validation($catName);
       
       if($catName == ''){
-        $alert = '<span class="red">Vui lòng nhập đủ thông tin</span>';
+        $alert = '<p class="err">Vui lòng nhập đủ thông tin</p>';
         return $alert;
       }
       else{
