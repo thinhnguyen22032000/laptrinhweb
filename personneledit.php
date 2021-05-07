@@ -11,13 +11,13 @@
    $per = new personnel();
    
 
-    if (!isset($_GET['perid']) || $_GET['perid'] == NULL) {
+    if (!isset($_GET['perid']) || $_GET['perid'] == NULL) { // neu ko ton tai perid reset page
         echo "<script>window.location = 'personnellist.php'</script>";
     } else {
         $perid = $_GET['perid']; 
     }
 
-    if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])){
+    if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])){ //edit nhan vien
    
     $edit_per = $per->edit_personnel($perid, $_POST);
   
@@ -29,7 +29,7 @@
 <div class="col-sm-9 text-left mgc f-ct"> 
 <h3 class="tl_ct m-3">Cập nhật nhân viên</h3>
 <?php
-       if(isset($edit_per)){
+       if(isset($edit_per)){ // xuat thong bao
         echo $edit_per;
        }
  ?>

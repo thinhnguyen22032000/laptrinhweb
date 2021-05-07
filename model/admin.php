@@ -18,7 +18,7 @@
       $this->fm = new Format();  		
     }
 
-    public function admin_login($adminEmail, $adminPass){
+    public function admin_login($adminEmail, $adminPass){ //kiem tra dang nhap
       $adminEmail = $this->fm->validation($adminEmail);
       $adminPass = $this->fm->validation($adminPass);
       $adminPass = md5($adminPass);
@@ -32,12 +32,12 @@
 
         if($result != false){
           $value = $result->fetch_assoc();
-          Session::set('adminlogin', true);
+          Session::set('adminlogin', true); //set session
           Session::set('adminid', $value['adminid']);
               Session::set('adminEmail', $value['adminEmail']);
               Session::set('adminName', $value['adminName']);
               Session::set('level', $value['level']);
-              header('location: index.php');
+              header('location: index.php');// chuyen den trang quan tri
         }
         else{
           $alert = "<p class='err'>Tài khoản hoặc mật khẩu không chính xác!!<p>";

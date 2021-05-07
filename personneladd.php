@@ -11,7 +11,7 @@
    $per = new personnel();
 
 
-   if(isset($_POST['submit'])){
+   if(isset($_POST['submit'])){ // add nhân viên
     $add_per= $per->add_personnel($_POST);
    }
 
@@ -21,7 +21,7 @@
 <div class="col-sm-9 text-left mgc f-ct"> 
 <h3 class="tl_ct m-3">Thêm nhân viên</h3>
 <?php
-       if(isset($add_per)){
+       if(isset($add_per)){ // xuat thong bao
         echo $add_per;
        }
  ?>

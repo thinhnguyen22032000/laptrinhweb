@@ -13,7 +13,7 @@
    $cat = new category();
 
 
-   if(isset($_POST['submit'])){
+   if(isset($_POST['submit'])){ // thêm sản phẩm
     $add_product = $product->add_product($_POST);
    }
 
@@ -23,7 +23,7 @@
 <div class="col-sm-9 text-left mgc"> 
 <h3 class="tl_ct m-3">Thêm sản phẩm</h3>
 <?php
-       if(isset($add_product)){
+       if(isset($add_product)){ // xuất thông báo khi thêm thành công
         echo $add_product;
        }
  ?>
@@ -41,7 +41,7 @@
             <option selected>---Danh mục sản phẩm---</option>
                 <?php 
                        
-                        $catlist = $cat->show_category();
+                        $catlist = $cat->show_category(); // danh sách danh mục
                         if($catlist){
                             while($result_cat = $catlist->fetch_assoc()) { ?>
                              
@@ -62,7 +62,7 @@
             <option selected>---Nhà cung cấp---</option>
               <?php 
                       
-                        $supplierlist = $cat->show_supplier();
+                        $supplierlist = $cat->show_supplier(); //danh sách nhà cung cấp
                         if($supplierlist){
                             while($result = $supplierlist->fetch_assoc()) { ?>
                              

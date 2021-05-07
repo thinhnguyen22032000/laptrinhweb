@@ -61,7 +61,7 @@
 
     ?>
     <?php 
-
+          // them category bang ajax
           if(isset($_POST['catName'])){
           $catName = $_POST['catName'];
 

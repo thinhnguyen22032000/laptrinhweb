@@ -9,7 +9,7 @@
       }else{
         $delid = $_GET['delid'];
         
-        $del_su = $cat->del_su($delid);
+        $del_su = $cat->del_su($delid); // xóa nhân sự
 
       }
 
@@ -20,7 +20,7 @@
   <?php 
        
    $cat = new category();
-   if(isset($_POST['submit'])){
+   if(isset($_POST['submit'])){ // thêm nhân sự
     $supplierName = $_POST['supplierName'];
     $suadd = $cat->add_su($supplierName);
    }
@@ -30,7 +30,7 @@
 <div class=""> 
 <h3 class="tl_ct">Quản lí nhà cung cấp</h3>
 <?php
-       if(isset($suadd)){
+       if(isset($suadd)){ // xuất thông báo
         echo $suadd;
        }
  ?>
@@ -75,7 +75,7 @@
     <tbody>
      <?php 
 
-         $get_supplier = $cat->show_supplier();
+         $get_supplier = $cat->show_supplier(); // danh sách nhân sự
           if($get_supplier){
           
             while($result = $get_supplier->fetch_assoc())

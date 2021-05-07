@@ -4,14 +4,14 @@
      $product = new product();
  ?>
 <?php 
-        if(isset($_GET['delid'])){
+        if(isset($_GET['delid'])){ // xóa sản phẩm
           $proid = $_GET['delid'];
           $product_del = $product->product_del($proid);
         }
   
 ?>
 <?php 
-   if(isset($_POST['key'])){
+   if(isset($_POST['key'])){ //gán key nhận dk từ post
     $key = $_POST['key'];
    }      
 ?>
@@ -26,7 +26,7 @@
   <div class="container">
   <h2 class="tl_ct">Tìm kiếm: từ khóa(<?php 
 
-     if(isset($key)){
+     if(isset($key)){ // echo từ khóa
       echo $key;
      }else{
       echo "";
@@ -39,7 +39,7 @@
    
     <span>
     <?php 
-           if(isset($product_del)){
+           if(isset($product_del)){// thông báo xóa
             echo $product_del;
            }
      ?>
@@ -66,7 +66,7 @@
 
      <?php
           
-         $search_product = $product->search_product($key);
+         $search_product = $product->search_product($key); // hiển thị ds sản phẩm
           if($search_product){
            $i=1;
             while($result = $search_product->fetch_assoc())
@@ -104,7 +104,8 @@
     </tbody>
   </table> 
   <?php 
-      if($search_product == []){ ?>
+      if($search_product == []){ // ko tìm thấy sp hiển thị mess
+   ?>
         <p class="err">Không tìm thấy sản phẩm</p>
   <?php
       }

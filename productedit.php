@@ -15,12 +15,12 @@
 
     
     if (!isset($_GET['proid']) || $_GET['proid'] == NULL) {
-    echo "<script>window.location = 'productlist.php'</script>";
+    echo "<script>window.location = 'productlist.php'</script>"; // ko tồn tại proid or proid = null ->f5
     } else {
         $proid = $_GET['proid']; 
     }
 
-    if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])){
+    if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])){ //edit sản phẩm
   
     $product_edit = $product->product_edit($proid, $_POST);
   
@@ -34,7 +34,7 @@
 <div class="col-sm-9 text-left mgc"> 
 <h3 class="tl_ct m-3">Cập nhật sản phẩm</h3>
 <?php
-       if(isset($product_edit)){
+       if(isset($product_edit)){ // xuất thông báo
         echo $product_edit;
        }
  ?>
@@ -57,7 +57,7 @@
             <option selected>---Danh mục sản phẩm---</option>
                 <?php 
                        
-                        $catlist = $cat->show_category();
+                        $catlist = $cat->show_category(); //show danh mục
                         if($catlist){
                             while($result_cat = $catlist->fetch_assoc()) { ?>
                              
@@ -88,7 +88,7 @@
             <option selected>---Nhà cung cấp---</option>
               <?php 
                       
-                        $supplierlist = $cat->show_supplier();
+                        $supplierlist = $cat->show_supplier(); // show nhà cung cấp
                         if($supplierlist){
                             while($result_sup = $supplierlist->fetch_assoc()) { ?>
                              

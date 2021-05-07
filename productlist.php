@@ -4,7 +4,7 @@
      $product = new product();
  ?>
 <?php 
-        if(isset($_GET['delid'])){
+        if(isset($_GET['delid'])){ // nếu tồng tại biến delid ->xóa
           $proid = $_GET['delid'];
           $product_del = $product->product_del($proid);
         }
@@ -34,7 +34,7 @@
     <a href="productadd.php" type="button" class="btn btn-success mb-3 lr-btn">Thêm mới</a>
     <span>
     <?php 
-           if(isset($product_del)){
+           if(isset($product_del)){ //thông báo xóa
             echo $product_del;
            }
      ?>
@@ -60,7 +60,7 @@
     <tbody>
      <?php 
 
-         $get_product = $product->phantrang_product();
+         $get_product = $product->phantrang_product(); // hiển thị ds sản phẩm
           if($get_product){
            $i=1;
             while($result = $get_product->fetch_assoc())
@@ -98,7 +98,7 @@
     </tbody>
   </table>      
  <!--  phan trang php -->
- <div class="phantrang">
+ <div class="phantrang"> 
    <?php 
         $sanpham1trang = 5;
         $row = $product->row_product();

@@ -26,7 +26,7 @@
 
    $pn = new phieunhap();
    $product = new product();
-   // add ctsp
+   // add sản phẩm vào phiếu nhập
    if(isset($_POST['submit'])){
     $add_chitietpn= $pn->add_chitietpn($_POST);
    }
@@ -48,7 +48,7 @@
 <div class="col-sm-4 text-left  mgc"> 
 <h3 class="tl_ct mt-4">Nhập sản phẩm</h3>
 <?php
-       if(isset($add_chitietpn)){
+       if(isset($add_chitietpn)){ // xuát thong báo
         echo $add_chitietpn;
        }
  ?>
@@ -86,7 +86,7 @@
           <select class="form-control form-control-sm form-select" aria-label="Default select example" name="productid">
             <option selected>---Chọn sản phẩm---</option>
           <?php 
-                $get_product = $product->get_name_product();
+                $get_product = $product->get_name_product(); // show tên sản phẩm
                 if($get_product){
                   while($row_name_pd = $get_product->fetch_assoc()){ ?>
                       <option value="<?php echo $row_name_pd['productid'] ?>"><?php echo $row_name_pd['productName'] ?></option>
@@ -143,7 +143,7 @@
     </thead>
      <tbody>
     <?php
-          $show_chitietpn = $pn->show_chitietpn($phieunhap_id);
+          $show_chitietpn = $pn->show_chitietpn($phieunhap_id); // show sp theo mã phiếu nhập
           if($show_chitietpn){
             $tongtien = 0;
             while($row_ctpn = $show_chitietpn->fetch_assoc()){ ?>
@@ -175,7 +175,7 @@
   <p>Tổng cộng: <?php echo isset($tongtien)?$tongtien .'VNĐ':'0 VNĐ' ?></p>
    <a href="whimport.php" class="btn btn-primary mt-3 pl-2 pl-3 pr-3 mb-5" name="submit">Lưu phiếu</a>
    <?php 
-         if(isset($update_qt)){
+         if(isset($update_qt)){ // thong báo cập nhật quantity
           echo $update_qt;
          }
    ?>

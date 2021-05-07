@@ -11,7 +11,7 @@
    $product = new product();
 
   
-   if(isset($_GET['ctpx'])){
+   if(isset($_GET['ctpx'])){ // get biến ctpx
     $phieuxuat_id = $_GET['ctpx'];
    }
 
@@ -23,7 +23,7 @@
   <h3 class="tl_ct">Chi tiết phiếu xuất</h3>
 
       <?php
-          $show_chitietpx = $px->show_chitietpx($phieuxuat_id);
+          $show_chitietpx = $px->show_chitietpx($phieuxuat_id); //show chi tiết px
           if($show_chitietpx){
            
             $row_ctpx = $show_chitietpx->fetch_assoc() ?>
@@ -51,7 +51,7 @@
     </thead>
      <tbody>
     <?php
-          $show_chitietpx = $px->show_chitietpx($phieuxuat_id);
+          $show_chitietpx = $px->show_chitietpx($phieuxuat_id); // show ctpx theo id px
           if($show_chitietpx){
            
             while($row_ctpx = $show_chitietpx->fetch_assoc()){ ?>

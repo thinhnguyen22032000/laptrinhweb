@@ -37,7 +37,7 @@
     $update_qt= $px->update_qt($quantity, $productid, $phieuxuat_id);
    }
 
-   if(isset($_GET['px'])){
+   if(isset($_GET['px'])){ //get biến px
     $phieuxuat_id = $_GET['px'];
    }
 
@@ -47,13 +47,13 @@
 <div class="col-sm-4 text-left mt-3 mgc"> 
 <h3 class="tl_ct">Xuất sản phẩm</h3>
 <?php
-       if(isset($add_chitietpx)){
+       if(isset($add_chitietpx)){ // thông báo
         echo $add_chitietpx;
        }
  ?>
   <form class="m-3" method="post" action="">
     <?php 
-         $get_pxid = $px->get_px_by_id($phieuxuat_id);
+         $get_pxid = $px->get_px_by_id($phieuxuat_id); // get phiếu xuất bởi id truyền vào
          if($get_pxid){
           while($row = $get_pxid->fetch_assoc()){ ?>
   
@@ -133,7 +133,7 @@
     </thead>
      <tbody>
     <?php
-          $show_chitietpx = $px->show_chitietpx($phieuxuat_id);
+          $show_chitietpx = $px->show_chitietpx($phieuxuat_id); //show chi tiết px
           if($show_chitietpx){
            
             while($row_ctpx = $show_chitietpx->fetch_assoc()){ ?>
@@ -161,7 +161,7 @@
   </table>
    <a href="phieuxuatlist.php" class="btn btn-primary mt-3 pl-2 pl-3 pr-3" name="submit">Lưu phiếu</a>
    <?php 
-        if(isset($update_qt)){
+        if(isset($update_qt)){ // thông báo mess
           echo $update_qt;
         }
    ?>

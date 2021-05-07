@@ -8,12 +8,12 @@
    $cat = new category();
 
    if (!isset($_GET['suid']) || $_GET['suid'] == NULL) {
-        echo "<script>window.location = 'supplierlist.php'</script>";
+        echo "<script>window.location = 'supplierlist.php'</script>"; // f5
     } else {
         $suid = $_GET['suid']; 
     }
 
-    if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])){
+    if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])){ // edit ncc
     $supplierName = $_POST['supplierName'];
     $suid = $_GET['suid'];  
     $suedit = $cat->edit_su($suid, $supplierName);
@@ -24,7 +24,7 @@
 <div class="col-sm-9 text-left mgc f-ct" style="margin-bottom: 200px"> 
 <h3 class="tl_ct m-3">Cập nhật nhà cung cấp</h3>
 <?php
-       if(isset($suedit)){
+       if(isset($suedit)){ // echo thông báo
         echo $suedit;
        }
  ?>
@@ -35,7 +35,7 @@
       <div class="col-sm-6">
 
       <?php 
-           $get_su_by_id = $cat->get_su_by_id($suid);
+           $get_su_by_id = $cat->get_su_by_id($suid); //show ncc theo id
            if($get_su_by_id){
             while($result = $get_su_by_id->fetch_assoc()) { ?>
 

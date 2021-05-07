@@ -13,7 +13,7 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
         $del_su = $cat->del_su($delid);
 
       }
-      if(isset($_POST['submit_phieuxuat'])){
+      if(isset($_POST['submit_phieuxuat'])){ // add phieu nhập
        $date = date("Y-m-d H:i:s");
         $adminid =  session::get('adminid');
         $add_pn = $pn->add_phieunhap($adminid,$date);
@@ -46,7 +46,7 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
     <tbody>
      <?php 
 
-         $get_pn = $pn->phantrang_phieunhap();
+         $get_pn = $pn->phantrang_phieunhap(); // hiển thi ds phiếu nhập
           if($get_pn){
           
             while($result = $get_pn->fetch_assoc())

@@ -4,12 +4,12 @@
     include 'model/personnel.php';
     $per = new personnel();
 
-      if(!isset($_GET['delid']) || $_GET['delid'] == null){
+      if(!isset($_GET['delid']) || $_GET['delid'] == null){ 
        
       }else{
         $delid = $_GET['delid'];
         
-        $del_per = $per->del_personnel($delid);
+        $del_per = $per->del_personnel($delid); // xoa nhan vien
 
       }
 
@@ -21,7 +21,7 @@
   <h2 class="tl_ct">Danh sách nhân sự</h2>
     <a href="personneladd.php" type="button" class="btn btn-success mb-3 lr-btn">Thêm mới</a>
   <?php 
-       if(isset($del_per)){
+       if(isset($del_per)){ //xuat thong bao sau khi xoa
         echo $del_per;
        }
   ?>
@@ -40,7 +40,7 @@
     <tbody>
      <?php 
 
-         $get_personnel = $per->show_personnel();
+         $get_personnel = $per->show_personnel();  // show nhan vien
           if($get_personnel){
           
             while($result = $get_personnel->fetch_assoc())

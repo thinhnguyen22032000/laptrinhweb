@@ -3,7 +3,7 @@
        
    include "model/category.php";
    $cat = new category();
-   if(isset($_POST['submit'])){
+   if(isset($_POST['submit'])){ // thêm nhà cung cấp
     $supplierName = $_POST['supplierName'];
     $suadd = $cat->add_su($supplierName);
    }
@@ -13,7 +13,7 @@
 <div class="col-sm-9 text-left mgc"> 
 <h3 class="tl_ct">Thêm nhà cung cấp</h3>
 <?php
-       if(isset($suadd)){
+       if(isset($suadd)){ // hiển thị thông báo
         echo $suadd;
        }
  ?>

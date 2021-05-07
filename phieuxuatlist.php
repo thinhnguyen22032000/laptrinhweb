@@ -1,11 +1,11 @@
 <?php include "inc/header.php"; ?>
 
 <?php 
-date_default_timezone_set('Asia/Ho_Chi_Minh');
+date_default_timezone_set('Asia/Ho_Chi_Minh'); // set múi giờ vn
     include 'model/phieuxuat.php';
     $px = new phieuxuat();
 
-      if(!isset($_GET['delid']) || $_GET['delid'] == null){
+      if(!isset($_GET['delid']) || $_GET['delid'] == null){ // nếu tồn tại delid thực hiện xóa
        
       }else{
         $delid = $_GET['delid'];
@@ -13,7 +13,7 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
         $del_su = $cat->del_su($delid);
 
       }
-      if(isset($_POST['submit_phieuxuat'])){
+      if(isset($_POST['submit_phieuxuat'])){ // thêm phiếu xuất
        $date = date("Y-m-d H:i:s");
         $adminid =  session::get('adminid');
         $add_px = $px->add_phieuxuat($adminid,$date);
@@ -30,7 +30,7 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
    
     </form>
   <?php 
-       if(isset($del_su)){
+       if(isset($del_su)){ //thông báo
         echo $del_su;
        }
   ?>
@@ -46,7 +46,7 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
     <tbody>
      <?php 
 
-         $get_px = $px->phantrang_phieuxuat();
+         $get_px = $px->phantrang_phieuxuat(); // hiển thi phiếu xuất
           if($get_px){
           
             while($result = $get_px->fetch_assoc())

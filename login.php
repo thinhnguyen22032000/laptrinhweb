@@ -34,7 +34,7 @@
 	<?php
 	     $ad = new admin();
          
-         if(isset($_POST['submit'])){
+         if(isset($_POST['submit'])){ // kiem tra dang nhap
          	$adminEmail = $_POST['adminEmail'];
          	$adminPass = $_POST['adminPass'];
 
@@ -48,7 +48,7 @@
     			<h3 class="tl-lg">Đăng nhập</h3>
     			<form class="form-container" method="post" action="" >
 				    <?php 
-                         if(isset($admin_login)){
+                         if(isset($admin_login)){ // xuất thông báo khi err
                          	echo $admin_login;
                          }
 				    ?>

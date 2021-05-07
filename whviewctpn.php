@@ -14,7 +14,7 @@
    $product = new product();
 
   
-   if(isset($_GET['ctpn'])){
+   if(isset($_GET['ctpn'])){ //get biến ctpn
     $phieunhap_id = $_GET['ctpn'];
    }
 
@@ -25,7 +25,7 @@
 <div class="col-sm-9 text-left mgc f-ct">
   <h3 class="tl_ct">Chi tiết phiếu nhập</h3>
      <?php
-          $show_chitietpn = $pn->show_chitietpn($phieunhap_id);
+          $show_chitietpn = $pn->show_chitietpn($phieunhap_id); // show ctpn theo mã phiếu nhâp
           if($show_chitietpn){
             
             $row_ctpn = $show_chitietpn->fetch_assoc() ?>
@@ -57,7 +57,7 @@
      <tbody>
         <tr>
           <?php
-          $show_chitietpn = $pn->show_chitietpn($phieunhap_id);
+          $show_chitietpn = $pn->show_chitietpn($phieunhap_id); // show ctpn theo mã phiếu nhâp
          
           if($show_chitietpn){
              $tongtien = 0;
