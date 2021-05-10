@@ -34,6 +34,22 @@
     }
 
     public function del_cat($catid){
+        //  $qrUpCat = "UPDATE tbl_product SET catid = '0' WHERE catid = '$catid'";
+        //  $this->db->delete($qrUpCat); 
+        $qr = "SELECT
+        *
+        FROM
+        tbl_product
+        INNER JOIN tbl_category ON tbl_product.catid = tbl_category.catid
+        WHERE tbl_category.catid = '$catid'";
+        
+        $resultcat = $this->db->select($qr);
+        if($resultcat){
+          $alert = "<p class='err'>(warning)Không thể xóa danh mục này<p>"; 
+          return $alert;
+        }else{
+
+        
         $qr = "DELETE FROM tbl_category WHERE catid = '$catid'";
         $result= $this->db->delete($qr); 
          if($result){
@@ -43,6 +59,7 @@
           $alert = '<span class="">delete false!!</span>'; 
           return $alert;
         }
+      }
     }
 
     public function edit_cat($catid, $catName){
@@ -110,15 +127,30 @@
   }
 
    public function del_su($suid){
+        //  $qrUpSu = "UPDATE tbl_product SET supplierid = '0' WHERE supplierid = '$suid'";
+        //  $this->db->update($qrUpSu); 
+        $qr = "SELECT
+        *
+        FROM
+        tbl_product
+        INNER JOIN tbl_supplier ON tbl_product.supplierid = tbl_supplier.supplierid
+        WHERE tbl_supplier.supplierid = '$suid'";
+        
+        $resultSu = $this->db->select($qr);
+        if($resultSu){
+          $alert = "<p class='err'>(warning)Không thể xóa nhà cung cấp này<p>"; 
+          return $alert;
+        }else{
         $qr = "DELETE FROM tbl_supplier WHERE supplierid = '$suid'";
         $result= $this->db->delete($qr); 
          if($result){
-          $alert = "<p class='err'>Xóa thành công!!<p>"; 
+          $alert = "<script type='text/javascript'>alert('Xóa thành công')</script>'"; 
           return $alert;
         }else{
           $alert = '<span class="">delete false!!</span>'; 
           return $alert;
         }
+      }
     }
 
     public function add_su($supplierName){

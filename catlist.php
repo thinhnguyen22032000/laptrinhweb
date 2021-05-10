@@ -8,10 +8,11 @@
       if(!isset($_GET['delid']) || $_GET['delid'] == null){
        
       }else{
+        
         $catid = $_GET['delid']; // neu ton tai delid thì thuc hien xóa categoty
         
         $del_cat = $cat->del_cat($catid);
-
+        
       }
 
 ?>

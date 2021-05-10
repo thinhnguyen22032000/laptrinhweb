@@ -13,10 +13,10 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
       }else{
         $delid = $_GET['delid'];
         
-        $del_su = $cat->del_su($delid);
+        $del_hd = $hd->del_hd($delid); //xoa hoa don
 
       }
-      if(isset($_POST['submit_hoadon'])){
+      if(isset($_POST['submit_hoadon'])){ // thêm hoa hơn
        $date = date("Y-m-d H:i:s");
         $adminid =  session::get('adminid');
         
@@ -29,6 +29,11 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
 
    <div class="container">
   <h2 class="tl_ct">Danh sách hóa đơn</h2>
+  <?php 
+      if(isset($del_hd)){
+        echo $del_hd;
+      }
+  ?>
   <form method="post" action="">
     <input type="submit" class="btn btn-success mb-3 lr-btn" name="submit_hoadon" value="Thêm hóa đơn">
    
@@ -66,7 +71,7 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
         <td>
           
           <a href="hoadonviewct.php?cthd=<?php echo $result['hoadon_id'] ?>" type="button" class="btn btn-warning btn-sm">view</a>
-          <!-- <a onclick = "return confirm('Bạn có muốn xóa?')" href="?delid=<?php echo $result['supplierid'] ?>" class="btn btn-danger ml-2 btn-sm">Del</a> -->
+          <a onclick = "return confirm('Bạn có muốn xóa?')" href="?delid=<?php echo $result['hoadon_id'] ?>" class="btn btn-danger ml-2 btn-sm">Del</a>
 
         </td>
       </tr>
@@ -85,6 +90,7 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
         $row = $hd->row_hd();
         $num_row = mysqli_num_rows($row);
         $sotrang = ceil($num_row/$sanpham1trang);
+       
         $i = 1;
         echo "Trang" ." ";
 

@@ -39,6 +39,20 @@
        $result = $this->db->select($qr);
        return $result;
     }
+    // xóa phieu xuat
+
+    public function del_px($id){
+      $qr = "DELETE FROM tbl_phieuxuat WHERE phieuxuat_id = '$id'";
+      $result = $this->db->delete($qr);
+      if($result){
+        $alert = "<p class='succes'>Xóa thành công</p>";
+        return $alert;
+      }else{
+        $alert = "<p class='err'>Xóa thất bại</p>";
+        return $alert;
+      }
+   }
+
 
      public function add_phieuxuat($adminid, $date){
        $qr = "INSERT INTO tbl_phieuxuat(adminid) VALUES('$adminid')";

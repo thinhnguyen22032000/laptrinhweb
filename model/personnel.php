@@ -38,12 +38,19 @@
       $alert = "<p class='err'>Vui lòng điền đủ thông tin</p>";
       return $alert;
 
-     }elseif($adminPass != $passAgain){
+      }
+      elseif($adminPass != $passAgain){
        $alert = "<p class='err'>Kiểm tra lại mật khẩu</p>";
        return $alert;
-     }
-     else{
-
+      }
+      // check email
+      $qr = "SELECT * FROM tbl_admin WHERE adminEmail = '$adminEmail'";
+      $result = $this->db->select($qr);
+      if($result){
+        $alert = "<p class='err'>Email đã tồn tại</p>";
+        return $alert;
+      }
+      else{
       $qr = "INSERT INTO tbl_admin(adminName, adminEmail, adminPass, phone, level)
              VALUES ('$adminName','$adminEmail','$adminPass','$phone','$level')";
 
@@ -55,8 +62,9 @@
             else{
               $alert = "<p class='err'>Thêm thất bại</p>";
               return $alert;
-      } 
+            }
      }
+    
 
     }
 
@@ -66,7 +74,7 @@
      $result = $this->db->select($qr);
      return $result;
     }     
-    
+    //edit admin
     public function edit_personnel($perid, $data){
       $adminName = $data['adminName'];
       $adminEmail = $data['adminEmail'];
@@ -79,7 +87,12 @@
       return $alert;
       }
       else{
-
+        $qr = "SELECT * FROM tbl_admin WHERE adminEmail = '$adminEmail'";
+        $result = $this->db->select($qr);
+        if($result){
+          $alert = "<p class='err'>Email đã tồn tại</p>";
+          return $alert;
+        }
       $qr = "UPDATE tbl_admin SET
             adminName = '$adminName',
             adminEmail = '$adminEmail',

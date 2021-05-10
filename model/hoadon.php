@@ -52,6 +52,19 @@
        $result = $this->db->select($qr);
        return $result;
     }
+    //xóa hóa đoen
+    public function del_hd($id){
+      $qr = "DELETE FROM tbl_hoadon WHERE hoadon_id = '$hoadon_id'";
+      $result = $this->db->delete($qr);
+      if($result){
+        $alert = "<p class='succes'>Xóa thành công</p>";
+        return $alert;
+      }else{
+        $alert = "<p class='err'>Xóa thất bại</p>";
+        return $alert;
+      }
+      
+   }
 
      public function add_hoadon($adminid, $date){
        $qr = "INSERT INTO tbl_hoadon(adminid) VALUES('$adminid')";

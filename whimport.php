@@ -10,7 +10,7 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
       }else{
         $delid = $_GET['delid'];
         
-        $del_su = $cat->del_su($delid);
+        $del_pn = $pn->del_pn($delid);
 
       }
       if(isset($_POST['submit_phieuxuat'])){ // add phieu nhập
@@ -25,6 +25,12 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
 
    <div class="container">
   <h2 class="tl_ct">Danh sách phiếu nhập</h2>
+  <?php 
+       if(isset($del_pn)){
+         echo $del_pn;
+       }
+     
+  ?>
   <form method="post" action="">
     <input type="submit" class="btn btn-success mb-3" name="submit_phieuxuat" value="Thêm phiếu nhập">
    
@@ -60,7 +66,7 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
         <td>
           
           <a href="whviewctpn.php?ctpn=<?php echo $result['phieunhap_id'] ?>" type="button" class="btn btn-warning btn-sm">view</a>
-          <!-- <a onclick = "return confirm('Bạn có muốn xóa?')" href="?delid=<?php echo $result['supplierid'] ?>" class="btn btn-danger ml-2 btn-sm">Del</a> -->
+          <a onclick = "return confirm('Bạn có muốn xóa?')" href="?delid=<?php echo $result['phieunhap_id'] ?>" class="btn btn-danger ml-2 btn-sm">Del</a>
 
         </td>
       </tr>

@@ -55,6 +55,19 @@
        $result = $this->db->select($qr);
        return $result;
     }
+    // xóa phiếu nhập
+    public function del_pn($id){
+      $qr = "DELETE FROM tbl_phieunhap WHERE phieunhap_id = '$id'";
+      $result = $this->db->delete($qr);
+      if($result){
+        $alert = "<p class='succes'>Xóa thành công</p>";
+        return $alert;
+      }else{
+        $alert = "<p class='err'>Xóa thất bại</p>";
+        return $alert;
+      }
+      
+   }
 
 
     public function add_chitietpn($data){
@@ -69,7 +82,12 @@
       $alert = "<p class='err'>Vui lòng điền đủ thông tin</p>";
       return $alert;
 
-     }else{
+     }
+    //  if(!is_int((int)$price)){
+    //   $alert = "<p class='err'>Giá sản phẩm phải nhâp số</p>";
+    //   return $alert; 
+    //  } 
+     else{
           $qr = "SELECT  * FROM tbl_chitietpn WHERE phieunhap_id = '$phieunhap_id' AND productid = '$productid'";
           $result = $this->db->select($qr);
           if($result){

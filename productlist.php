@@ -70,8 +70,8 @@
       <tr>
         <td><?php echo $result['productid'] ?></td>
         <td><?php echo $result['productName'] ?></td>
-        <td><?php echo $result['catid'] ?></td>
-        <td><?php echo $result['supplierid'] ?></td>
+        <td><?php echo $result['catid']==0?'Null':$result['catid'] ?></td>
+        <td><?php echo $result['supplierid']==0?'Null':$result['supplierid'] ?></td>
         <td><?php 
                   if($result['unit'] == 1){
                     echo 'kg';
